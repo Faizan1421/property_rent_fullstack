@@ -3,7 +3,18 @@ import { axiosInstance } from "../../lib/axios";
 import { Link, useNavigate } from "react-router-dom";
 import { LogOut } from "lucide-react";
 import { Menu } from "lucide-react";
+import { useState } from "react";
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleMenuClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleItemClick = () => {
+    setIsOpen(false);
+  };
+
   const { data: authUser } = useQuery({ queryKey: ["authUser"] });
   const queryClient = useQueryClient();
 
@@ -66,35 +77,39 @@ const Navbar = () => {
                   <div
                     tabIndex={0}
                     role="button"
-                    className=" btn h-9 min-h-9 w-9 min-w-9 bg-transparent border-0 shadow-none hover:bg-blue-600 hover:text-white p-0 m-0"
+                    className="btn h-9 min-h-9 w-9 min-w-9 bg-transparent border-0 shadow-none hover:bg-blue-600 hover:text-white p-0 m-0"
+                    onClick={handleMenuClick}
                   >
-                    <Menu className=" p-0 m-0 " />
+                    <Menu className="p-0 m-0" />
                   </div>
-                  <ul
-                    tabIndex={0}
-                    className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow mt-4"
-                  >
-                    <li
-                      className="hover:bg-blue-600 rounded-lg hover:text-white"
-                      onClick={() => navigate("/wishlist")}
+                  {isOpen && (
+                    <ul
+                      tabIndex={0}
+                      className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow mt-4"
                     >
-                      <a>Wishlist</a>
-                    </li>
-                    <li
-                      className="hover:bg-blue-600 rounded-lg hover:text-white"
-                      onClick={() => navigate("/messenger")}
-                    >
-                      <a>Messages</a>
-                    </li>
-                    <li>
-                      <Link
-                        to={`/profile/${authUser?.data?.username}`}
+                      <li
                         className="hover:bg-blue-600 rounded-lg hover:text-white"
+                        onClick={handleItemClick}
                       >
-                        Profile
-                      </Link>
-                    </li>
-                  </ul>
+                        <a onClick={() => navigate("/wishlist")}>Wishlist</a>
+                      </li>
+                      <li
+                        className="hover:bg-blue-600 rounded-lg hover:text-white"
+                        onClick={handleItemClick}
+                      >
+                        <a onClick={() => navigate("/messenger")}>Messages</a>
+                      </li>
+                      <li>
+                        <Link
+                          to={`/profile/${authUser?.data?.username}`}
+                          className="hover:bg-blue-600 rounded-lg hover:text-white"
+                          onClick={handleItemClick}
+                        >
+                          Profile
+                        </Link>
+                      </li>
+                    </ul>
+                  )}
                 </div>
               </div>
             ) : (

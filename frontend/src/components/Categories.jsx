@@ -44,9 +44,11 @@ const Categories = () => {
         travelers. Immerse yourself in the local culture, enjoy the comforts of
         home, and create unforgettable memories in your dream destination.
       </p>
-      <div className=" flex gap-2 justify-center overflow-hidden  flex-wrap ">
+      <div className="flex justify-center overflow-hidden flex-wrap gap-4 md:gap-4 mb-10 lg:mb-20">
         <button
-          className={`btn btn-outline btn-primary ${selectedCategory.name === "all" && "btn-active "}`}
+          className={`btn btn-outline btn-primary ${
+            selectedCategory.name === "all" && "btn-active "
+          }`}
           onClick={() => {
             queryClient.setQueryData(["selectedCategory"], () => {
               return {
@@ -59,20 +61,21 @@ const Categories = () => {
         </button>
         {categories.data?.map((data, key) => {
           return (
-            <div key={key} className="flex pb-20 ">
-              <button
-                className={` btn btn-outline btn-primary  ${selectedCategory.name === data.name && "btn-active"}`}
-                onClick={() => {
-                  queryClient.setQueryData(["selectedCategory"], () => {
-                    return {
-                      name: data.name,
-                    };
-                  });
-                }}
-              >
-                {data.name}
-              </button>
-            </div>
+            <button
+              key={key}
+              className={`btn btn-outline btn-primary ${
+                selectedCategory.name === data.name && "btn-active"
+              }`}
+              onClick={() => {
+                queryClient.setQueryData(["selectedCategory"], () => {
+                  return {
+                    name: data.name,
+                  };
+                });
+              }}
+            >
+              {data.name}
+            </button>
           );
         })}
       </div>

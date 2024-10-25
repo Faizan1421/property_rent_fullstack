@@ -7,6 +7,9 @@ import { useState } from "react";
 import { EllipsisVertical } from "lucide-react";
 
 const Comments = (data) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpen2, setIsDropdownOpen2] = useState(false);
+
   const { data: authUser } = useQuery({ queryKey: ["authUser"] });
   // (authUser?.data?._id, "authUser");
   const [createComment, setCreateComment] = useState("");
@@ -160,16 +163,20 @@ const Comments = (data) => {
                           tabIndex={0}
                           role="button"
                           className="btn m-1 bg-transparent border-none hover:bg-blue-600 hover:text-white"
+                          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                         >
                           <EllipsisVertical />
                         </div>
                         <ul
                           tabIndex={0}
-                          className="dropdown-content menu bg-base-100 rounded-md z-[1] w-52 p-2 shadow"
+                          className={`dropdown-content menu bg-base-100 rounded-md z-[1] w-52 p-2 shadow ${
+                            isDropdownOpen ? "" : "hidden"
+                          }`}
                         >
                           <li
                             onClick={() => {
                               handleClickDeleteComment(item?._id);
+                              setIsDropdownOpen(false); // Close the dropdown menu
                             }}
                             className="hover:bg-blue-600 hover:text-white rounded-md"
                           >
@@ -216,9 +223,9 @@ const Comments = (data) => {
               </div>
               {allComments?.data?.map((item, index) => (
                 <div key={index} className="md:w-[parent] p-5">
-                  <article className="p-6 text-base bg-white rounded-lg   ">
+                  <article className="lg:p-6 text-base bg-white rounded-lg   ">
                     <footer className="flex justify-between items-center mb-2">
-                      <div className="flex items-center">
+                      <div className="flex   items-center">
                         <p className="inline-flex  items-center mr-3 text-sm text-gray-900  font-semibold">
                           <img
                             src={
@@ -242,21 +249,25 @@ const Comments = (data) => {
                       </div>
                       {/* Dropdown menu */}
                       {authUser?.data?._id == item?.owner?._id && (
-                        <div className="dropdown dropdown-top dropdown-end mx-20 ">
+                        <div className="dropdown dropdown-top dropdown-end lg:mx-20 ">
                           <div
                             tabIndex={0}
                             role="button"
-                            className="btn bg-transparent border-none hover:bg-blue-600 hover:text-white "
+                            className="btn bg-transparent border-none hover:bg-blue-600 hover:text-white"
+                            onClick={() => setIsDropdownOpen2(!isDropdownOpen2)}
                           >
                             <EllipsisVertical />
                           </div>
                           <ul
                             tabIndex={0}
-                            className="dropdown-content menu bg-base-100 rounded-md z-[1] w-52 p-2 shadow"
+                            className={`dropdown-content menu bg-base-100 rounded-md z-[1] w-52 p-2 shadow ${
+                              isDropdownOpen2 ? "" : "hidden"
+                            }`}
                           >
                             <li
                               onClick={() => {
                                 handleClickDeleteComment(item?._id);
+                                setIsDropdownOpen2(false); // Close the dropdown menu
                               }}
                               className="hover:bg-blue-600 hover:text-white rounded-md"
                             >

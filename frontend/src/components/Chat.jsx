@@ -133,7 +133,7 @@ const Chat = () => {
                           {formattedDate}
                         </time>
                       </div>
-                      <div className="chat-bubble bg-base-200 text-black ">
+                      <div className="chat-bubble bg-base-200 text-black max-w-[screen]  text-wrap overflow-hidden">
                         {chat?.message}
                       </div>
                     </div>
@@ -144,7 +144,7 @@ const Chat = () => {
             <div>
               <h1>No chats yet</h1>
             </div>
-          )})
+          )}
         </div>
       )}
 
