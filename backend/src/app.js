@@ -2,6 +2,7 @@ import express, { urlencoded } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import path from "path";
+import { rateLimit } from 'express-rate-limit'
 
 const __dirname = path.resolve();
 const app = express();
@@ -28,6 +29,12 @@ app.use(
     limit: "16kb",
   })
 );
+
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 20,
+});
+app.use(limiter);
 
 // Import Routes
 import userRouter from "./routes/user.routes.js";
