@@ -96,22 +96,20 @@ const Chat = () => {
 
   return (
     <>
-      {isPending || isLoading ? (
+      { isPending || isLoading ? (
         <div className="flex justify-center items-center h-screen">
           <Loader className="size-10 animate-spin text-blue-700" />
         </div>
       ) : (
         <div className="mb-40 mt-24 px-10">
           {/* <div>{getSingleConversation?.data[0]?.chats[0]?.message}</div> */}
-          {getSingleConversation?.data[0]?.chats.length ? (
+          {getSingleConversation?.data[0]?.chats?.length ? (
             getSingleConversation?.data[0]?.chats
-              ?.slice()
-              .reverse()
-              .map((chat, index) => {
+              ?.slice()?.reverse()?.map((chat, index) => {
                 // Date format set
                 const bsonDate = chat?.createdAt;
-                const date = moment(bsonDate).toDate();
-                const formattedDate = moment(date).fromNow();
+                const date = moment(bsonDate)?.toDate();
+                const formattedDate = moment(date)?.fromNow();
                 return (
                   // <div key={chat._id}>
                   //   <div>{chat?.message}</div>
@@ -146,7 +144,7 @@ const Chat = () => {
             <div>
               <h1>No chats yet</h1>
             </div>
-          )}
+          )})
         </div>
       )}
 

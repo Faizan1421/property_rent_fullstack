@@ -59,8 +59,8 @@ const Listings = () => {
     queryFn: fetchProjects,
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
-      if (lastPage.hasNextPage) {
-        return lastPage.page + 1;
+      if (lastPage?.hasNextPage) {
+        return lastPage?.page + 1;
       } else {
         return undefined;
       }
@@ -91,7 +91,7 @@ const Listings = () => {
             key={index}
             className="flex flex-wrap justify-center items-center px-10"
           >
-            {page.docs.map((item, index) => (
+            {page?.docs?.map((item, index) => (
               <ListingCard key={index} item={item} />
             ))}
           </div>

@@ -88,7 +88,7 @@ const Navbar = () => {
                     </li>
                     <li>
                       <Link
-                        to={`/profile/${authUser.data.username}`}
+                        to={`/profile/${authUser?.data?.username}`}
                         className="hover:bg-blue-600 rounded-lg hover:text-white"
                       >
                         Profile
