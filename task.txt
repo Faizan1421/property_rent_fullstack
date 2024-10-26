@@ -1,0 +1,2 @@
+1- change create listing status code of atleast upload 1 image
+2- set atleast 2 images to upload in listing 

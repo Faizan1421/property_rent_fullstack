@@ -106,7 +106,7 @@ const MessengerRecipients = (data) => {
                         navigate(`/messenger/${conversation?._id}`);
                         document.getElementById("my-drawer-2").click(); // Close the drawer
                       }}
-                      className={`rounded-xl  hover:bg-white hover:text-black  ${params?.id === conversation?._id && "bg-blue-800 text-white"}`}
+                      className={`rounded-xl  hover:bg-white hover:text-black  ${params?.id === conversation?._id && "bg-base-100 text-black"} mb-4`}
                     >
                       <div className="avatar">
                         <div className="w-14 rounded-full  ">

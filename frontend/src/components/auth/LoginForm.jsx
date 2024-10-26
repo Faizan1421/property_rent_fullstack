@@ -18,6 +18,7 @@ const LoginForm = () => {
     onError: (err) => {
       toast.error(err.response.data.message || "Something went wrong");
     },
+   
   });
 
   const handleSubmit = (e) => {

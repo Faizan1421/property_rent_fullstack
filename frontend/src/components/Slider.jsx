@@ -33,7 +33,7 @@ const Slider = (data) => {
           >
             <img
               src={slideContent?.url}
-              className="block  h-[200px] laptop:w-[400px] laptop:h-[400px] object-cover"
+              className="block h-[300px]  tablet:h-[400px] laptop:w-[400px] laptop:h-[400px] desktop:w-[600px] desktop:h-[400px] object-cover"
               onClick={() =>
                 document.getElementById(`index-${index}`).showModal()
               }
@@ -43,7 +43,7 @@ const Slider = (data) => {
               id={`index-${index}`}
               className="modal bg-black bg-opacity-50 backdrop-blur-lg"
             >
-              <div className="modal-box p-0">
+              <div className="modal-box p-0 ">
                 <form method="dialog">
                   <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-blue-600">
                     <CircleX />
@@ -52,7 +52,7 @@ const Slider = (data) => {
                 <img
                   src={slideContent?.url}
                   alt=""
-                  className="w-[100%] h-[100%] object-contain"
+                  className="w-[100%] h-[100%] object-contain overflow-hidden "
                 />
               </div>
             </dialog>

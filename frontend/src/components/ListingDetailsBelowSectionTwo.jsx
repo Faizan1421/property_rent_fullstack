@@ -1,10 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Heart, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import moment from "moment";
 import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import { FaHeart } from "react-icons/fa";
 
 const ListingDetailsBelowSectionTwo = (data) => {
+  const [liked, setLiked] = useState(false);
   const listingDetails = data?.listingDetails?.data[0];
   const { data: authUser } = useQuery({ queryKey: ["authUser"] });
   //   (authUser?.data?._id, "authUser");
@@ -28,9 +31,10 @@ const ListingDetailsBelowSectionTwo = (data) => {
   const handleAddToWishlist = (id) => {
     if (authUser && authUser?.data?._id !== listingDetails?.owner?._id) {
       addToWishlist(id);
-    }else if (authUser){
+      setLiked(true);
+    } else if (authUser) {
       toast.error("You can't add your own listing to wishlist");
-    }else{
+    } else {
       toast.error("Please login first");
     }
   };
@@ -52,6 +56,7 @@ const ListingDetailsBelowSectionTwo = (data) => {
   const handleDeleteFromWishlist = (id) => {
     if (authUser && authUser?.data?._id !== listingDetails?.owner?._id) {
       deleteFromWishlist(id);
+      setLiked(false);
     }
   };
 
@@ -72,7 +77,7 @@ const ListingDetailsBelowSectionTwo = (data) => {
             {formattedDate}
           </h1>
           <div className="flex flex-col items-center">
-            <Heart
+            {/* <Heart
               onClick={() => {
                 if (!listingDetails?.isLiked) {
                   handleAddToWishlist(listingDetails?._id);
@@ -81,7 +86,27 @@ const ListingDetailsBelowSectionTwo = (data) => {
                 }
               }}
               className={`${listingDetails?.isLiked ? "text-red-600" : "text-base-400"} cursor-pointer hover:`}
-            />
+            /> */}
+            <button
+              className={`text-xl ${
+                liked ? "text-red-500" : "text-gray-500"
+              } transition duration-300 ease-in-out mb-1`}
+              onClick={() => {
+                if (!listingDetails?.isLiked) {
+                  handleAddToWishlist(listingDetails?._id);
+                } else {
+                  handleDeleteFromWishlist(listingDetails?._id);
+                }
+              }}
+            >
+              <FaHeart
+                className={`transform ${listingDetails?.isLiked ? "scale-125" : ""} ${
+                  listingDetails?.isLiked ? "animate-pulse" : ""
+                } transition duration-300 ease-in-out`}
+              />
+            </button>
+
+            {/*  */}
             <h1 className="text-gray-600 text-xs font-semibold">
               {listingDetails?.likesCount}
             </h1>

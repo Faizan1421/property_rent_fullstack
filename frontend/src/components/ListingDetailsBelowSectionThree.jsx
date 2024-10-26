@@ -8,7 +8,7 @@ const ListingDetailsBelowSectionThree = (data) => {
         <h1 className="text-xs laptop:text-sm font-bold  mb-6">
           Total Rooms {listingDetails?.rooms}
         </h1>
-        <div className="flex gap-2 font-semibold">
+        <div className="flex gap-2 font-semibold flex-wrap justify-start">
           {listingDetails?.amenities?.map((amenities, index) => (
             <span
               className="w-fit h-fit bg-blue-100 text-sm laptop:text-sm mb-2 p-2 rounded-md text-black"
