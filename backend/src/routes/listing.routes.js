@@ -12,6 +12,7 @@ import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { checkRole } from "../middlewares/checkRole.middleware.js";
 import { Router } from "express";
+import { ApiError } from "../utils/ApiError.js";
 const router = Router();
 router
   .route("/create-listing")
@@ -19,8 +20,15 @@ router
     verifyJWT,
     checkRole("seller", "admin"),
     upload.array("listingImages", 5),
+    (req, res, next) => {
+      if (req.files.length < 1) { // minimum 1 image is required
+       throw new ApiError(401, "Atleast 1 Image is Required for Creating Listing")
+      }
+      next();
+    },
     createListing
   );
+  
 router.route("/:id").delete(verifyJWT, checkRole("seller"), deleteListing);
 
 router.route("/:id").patch(verifyJWT, checkRole("seller"), updateListing);

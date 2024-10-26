@@ -45,7 +45,8 @@ const listingSchema = new Schema(
           type: String,
           required: true,
         },
-      },
+      }
+      
     ],
     rooms: {
       type: Number,
