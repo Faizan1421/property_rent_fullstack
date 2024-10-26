@@ -3,11 +3,10 @@ import { MapPin } from "lucide-react";
 import moment from "moment";
 import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
-import { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 
 const ListingDetailsBelowSectionTwo = (data) => {
-  const [liked, setLiked] = useState(false);
+  
   const listingDetails = data?.listingDetails?.data[0];
   const { data: authUser } = useQuery({ queryKey: ["authUser"] });
   //   (authUser?.data?._id, "authUser");
@@ -31,7 +30,7 @@ const ListingDetailsBelowSectionTwo = (data) => {
   const handleAddToWishlist = (id) => {
     if (authUser && authUser?.data?._id !== listingDetails?.owner?._id) {
       addToWishlist(id);
-      setLiked(true);
+      
     } else if (authUser) {
       toast.error("You can't add your own listing to wishlist");
     } else {
@@ -56,7 +55,6 @@ const ListingDetailsBelowSectionTwo = (data) => {
   const handleDeleteFromWishlist = (id) => {
     if (authUser && authUser?.data?._id !== listingDetails?.owner?._id) {
       deleteFromWishlist(id);
-      setLiked(false);
     }
   };
 
