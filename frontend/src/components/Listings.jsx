@@ -79,7 +79,7 @@ const Listings = () => {
   if (isError) return <div className="text-center w-full">{error.message}</div>;
 
   return (
-    <div className="mb-48 flex flex-col flex-wrap justify-center items-center px-10 ">
+    <div className="mb-48 flex flex-col flex-wrap justify-center items-center  ">
       <InfiniteScroll
         loadMore={() => {
           if (!isFetching) fetchNextPage();

@@ -24,10 +24,8 @@ const WishlistPage = () => {
     <div className="flex flex-col items-center justify-center laptop:px-20 ">
       <h1 className="text-4xl font-semibold my-20 text-blue-600">Wishlist</h1>
       <div className="flex  flex-wrap justify-center flex-row  ">
-        {wishlist?.data?.map((item, index) => (
-         
+        {wishlist?.data?.map((item, index) => (   
           <ListingCard key={index} item={item?.listing} />
-         
           
         ))}
       </div>
