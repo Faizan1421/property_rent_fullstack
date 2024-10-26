@@ -89,7 +89,7 @@ const ListingDetailsBelowSectionTwo = (data) => {
             /> */}
             <button
               className={`text-xl ${
-                liked ? "text-red-500" : "text-gray-500"
+                listingDetails?.isLiked ? "text-red-500" : "text-gray-500"
               } transition duration-300 ease-in-out mb-1`}
               onClick={() => {
                 if (!listingDetails?.isLiked) {
@@ -101,7 +101,7 @@ const ListingDetailsBelowSectionTwo = (data) => {
             >
               <FaHeart
                 className={`transform ${listingDetails?.isLiked ? "scale-125" : ""} ${
-                  listingDetails?.isLiked ? "animate-pulse" : ""
+                  listingDetails?.isLiked ? "animate-pulse " : ""
                 } transition duration-300 ease-in-out`}
               />
             </button>
