@@ -79,29 +79,30 @@ const Listings = () => {
   if (isError) return <div className="text-center w-full">{error.message}</div>;
 
   return (
-    <div className="mb-48">
+    <div className="mb-48 flex flex-col flex-wrap justify-center items-center px-10 ">
       <InfiniteScroll
         loadMore={() => {
           if (!isFetching) fetchNextPage();
         }}
         hasMore={hasNextPage}
+        
       >
         {queryData.pages.map((page, index) => (
-          <div
-            key={index}
-            className="flex flex-wrap justify-center items-center px-10"
-          >
-            {page?.docs?.map((item, index) => (
-              <ListingCard key={index} item={item} />
-            ))}
-          </div>
+          <div key={index} className="flex flex-wrap  ">
+          {page?.docs?.map((item, index) => (
+            <div key={index} className={`w-full ${page?.docs?.length == 1 && "laptop:flex-1"} ${page?.docs?.length >= 3 ? "laptop:w-1/3" : "laptop:w-1/2"} ${page?.docs?.length >= 4 && "desktop:w-1/4" }   p-2 flex justify-center `}>
+              <ListingCard item={item} />
+            </div>
+          ))}
+        </div>
         ))}
+       
       </InfiniteScroll>
 
       {/* {isFetching && <div className="text-center w-full">Loading...</div>} */}
       {isFetching && (
         <div className="flex justify-center items-center h-screen">
-          <Loader className="size-10 animate-spin text-blue-700" />{" "}
+          <Loader className="size-10 animate-spin text-blue-700" />
         </div>
       )}
       {!hasNextPage && !isFetching && (

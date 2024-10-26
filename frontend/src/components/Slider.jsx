@@ -33,7 +33,7 @@ const Slider = (data) => {
           >
             <img
               src={slideContent?.url}
-              className="block  h-[200px] lg:w-[400px] lg:h-[400px] object-cover"
+              className="block  h-[200px] laptop:w-[400px] laptop:h-[400px] object-cover"
               onClick={() =>
                 document.getElementById(`index-${index}`).showModal()
               }

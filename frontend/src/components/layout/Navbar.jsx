@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-[screen] mx-auto px-10 laptop:px-20">
         <div className="flex justify-between items-center py-3">
           <div className="flex items-center space-x-4">
             <Link to="/">

@@ -28,6 +28,10 @@ const ListingDetailsBelowSectionTwo = (data) => {
   const handleAddToWishlist = (id) => {
     if (authUser && authUser?.data?._id !== listingDetails?.owner?._id) {
       addToWishlist(id);
+    }else if (authUser){
+      toast.error("You can't add your own listing to wishlist");
+    }else{
+      toast.error("Please login first");
     }
   };
 
@@ -57,7 +61,7 @@ const ListingDetailsBelowSectionTwo = (data) => {
   return (
     <div className="flex flex-col border-[1px] border-gray-100 rounded-lg p-4  ">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl lg:text-4xl font-bold text-blue-600">
+        <h1 className="text-2xl laptop:text-4xl font-bold text-blue-600">
           {new Intl.NumberFormat("en-PK", {
             style: "currency",
             currency: "PKR",
@@ -84,7 +88,7 @@ const ListingDetailsBelowSectionTwo = (data) => {
           </div>
         </div>
       </div>
-      <h1 className="text-lg lg:text-2xl font-semibold mb-2 ">
+      <h1 className="text-lg laptop:text-2xl font-semibold mb-2 ">
         {listingDetails?.title}
       </h1>
       <p className="flex gap-2">

@@ -32,19 +32,19 @@ const Categories = () => {
 
   return isLoading ? (
     <div className="flex justify-center items-center h-screen ">
-      <Loader className="size-10 animate-spin text-blue-700" />{" "}
+      <Loader className="size-10 animate-spin text-blue-700" />
     </div>
   ) : (
-    <div className=" flex flex-col justify-center items-center mt-10 md:mt-24 gap-5 md:gap-10 px-10 ">
-      <h1 className=" text-center font-semibold text-3xl md:text-5xl  text-blue-600 ">
+    <div className=" flex flex-col justify-center items-center mt-10 laptop:mt-24 gap-5 tablet:gap-10 px-10 ">
+      <h1 className=" text-center font-semibold text-3xl tablet:text-5xl  text-blue-600 ">
         Explore Top Categories
       </h1>
-      <p className="pb-12 max-w-[700px] text-sm md:text-lg font-semibold text-gray-600  mx-auto text-justify md:text-center">
+      <p className="pb-12 max-w-full tablet:max-w-[1000px] text-sm tablet:text-xl font-semibold text-gray-600  mx-auto text-justify tablet:text-center ">
         Explore our wide range of vacation rentals that cater to all types of
         travelers. Immerse yourself in the local culture, enjoy the comforts of
         home, and create unforgettable memories in your dream destination.
       </p>
-      <div className="flex justify-center overflow-hidden flex-wrap gap-4 md:gap-4 mb-10 lg:mb-20">
+      <div className="flex justify-center overflow-hidden flex-wrap gap-4 tablet:gap-4 mb-10 laptop:mb-20">
         <button
           className={`btn btn-outline btn-primary ${
             selectedCategory.name === "all" && "btn-active "

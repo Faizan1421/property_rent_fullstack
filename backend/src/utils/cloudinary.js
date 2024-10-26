@@ -79,7 +79,7 @@ const bulkUploadOnCloudinary = async ({ localImagesPath }) => {
         });
 
         cloudinaryResponse.push({
-          url: response.url,
+          url: response.secure_url,
           public_id: response.public_id,
         });
       }

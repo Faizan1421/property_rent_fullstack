@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "../lib/axios";
 import { useEffect, useState } from "react";
-import { Loader } from "lucide-react";
+import { ChevronRight, Loader } from "lucide-react";
 import moment from "moment";
 import { animateScroll } from "react-scroll";
 import toast from "react-hot-toast";
@@ -114,7 +114,7 @@ const Chat = () => {
                   // <div key={chat._id}>
                   //   <div>{chat?.message}</div>
                   // </div>
-                  <div key={index} className="w-full mb-4  lg:px-32 mt-12">
+                  <div key={index} className="w-full mb-4  laptop:px-32 mt-12">
                     <div
                       className={`chat ${chat?.sender[0]?._id == authUser?.data?._id ? "chat-end" : "chat-start"}`}
                     >
@@ -150,7 +150,7 @@ const Chat = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="fixed flex bottom-10 left-[50%] right-[50%] lg:left-0 lg:right-0 justify-center gap-4 lg:ml-40 "
+        className=" fixed flex bottom-10 left-[50%] right-[50%] laptop:left-0 laptop:right-0 justify-center  laptop:ml-40 "
       >
         <input
           type="text"
@@ -160,13 +160,13 @@ const Chat = () => {
             e.preventDefault();
             setCreateMessage(e.target.value);
           }}
-          className="input input-bordered lg:w-1/2 focus:outline-blue-600 "
+          className="input input-bordered laptop:w-1/2  focus:outline-none  "
           // disabled={isPending}
           required
           disabled={isSendingMsg && "disabled"}
         />
-        <button type="submit" className="btn btn-primary w-14">
-          Send
+        <button type="submit" className="btn btn-primary w-14 ml-[-56px] rounded-l-none bg-transparent border-none text-black hover:text-white">
+        <ChevronRight  className="w-10 " />
         </button>
       </form>
     </>

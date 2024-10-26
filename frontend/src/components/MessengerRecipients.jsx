@@ -62,18 +62,18 @@ const MessengerRecipients = (data) => {
     <>
       <div className="">
         <CircleArrowDown
-          className={`fixed bottom-24 right-1 lg:bottom-10 lg:right-10 z-50 cursor-pointer w-8 h-8 lg:w-10 lg:h-10 text-blue-600 opacity-40 hover:opacity-100 animate-bounce hover:animate-none scroll-down-button  ${isScrollAtEnd ? "hidden" : ""}`}
+          className={`fixed bottom-24 right-1 laptop:bottom-10 laptop:right-10 z-50 cursor-pointer w-8 h-8 laptop:w-10 laptop:h-10 text-blue-600 opacity-40 hover:opacity-100 animate-bounce hover:animate-none scroll-down-button  ${isScrollAtEnd ? "hidden" : ""}`}
           onClick={scrollToBottom}
         />
 
         <label
           htmlFor="my-drawer-2"
-          className="btn w-screen drawer-button lg:hidden fixed z-40 bg-base-100 text-black  text-lg rounded-none "
+          className="btn w-screen drawer-button laptop:hidden fixed z-40 bg-base-100 text-black  text-lg rounded-none hover:bg-base-100"
         >
           Conversations
         </label>
 
-        <div className="drawer lg:drawer-open scroll-smooth ">
+        <div className="drawer laptop:drawer-open scroll-smooth ">
           <input id="my-drawer-2" type="checkbox" className="drawer-toggle " />
           <div className="drawer-content items-center justify-center">
             <Chat />
@@ -85,7 +85,7 @@ const MessengerRecipients = (data) => {
               className="drawer-overlay  "
             ></label>
 
-            <ul className="menu  min-h-full w-80 p-4 pt-40 lg:pt-20 bg-blue-600 text-white">
+            <ul className="menu  min-h-full w-80 p-4 pt-40 laptop:pt-20 bg-blue-600 text-white">
               <div className="flex justify-center items-center mb-10">
                 <img src="/logo.svg" alt="logo" className="h-20 w-20" />
               </div>

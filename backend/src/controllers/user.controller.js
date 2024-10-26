@@ -97,7 +97,7 @@ const registerUser = asyncHandler(async (req, res) => {
     //* 6-Upload to Cloudinary - Avatar/Image --IMP use it here because it doesnot delete image on cloudinary if there is an validation error
     if (avatarLocalPath) {
       const avatar = await uploadOnCloudinary(avatarLocalPath);
-      user.avatar = avatar?.url || "";
+      user.avatar = avatar?.secure_url || "";
       await user.save({ validateBeforeSave: true });
     }
 
@@ -512,7 +512,7 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
       avatarLocalPath,
       publicIdOfOldAvatar
     );
-    const newAvatarUrl = newAvatar?.url;
+    const newAvatarUrl = newAvatar?.secure_url;
     if (!newAvatarUrl) {
       throw new ApiError(400, "Error while uploading on avatar");
     }
@@ -584,13 +584,13 @@ const forgotPassword = asyncHandler(async (req, res) => {
 
     //* 3- Send email of password recovery with reset url by using nodemailer utility named sendEmail.js
 
-    const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
+    // const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
     // const protocol ="https"; // we are hardcoding it for now.
 
     const host = config.BASE_URL || req.headers.host;
 
     // const resetUrl = `${protocol}://${host}/api/v1/users/reset-password/${resetToken}`;
-    const resetUrl = `${protocol}://${host}/reset-password/${resetToken}`;
+    const resetUrl = `${host}/reset-password/${resetToken}`;
 
     const message = `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n
       Please click on the following link, or paste this into your browser to complete the process:\n\n

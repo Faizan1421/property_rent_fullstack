@@ -33,7 +33,7 @@ const ListingDetailsBelowSectionOne = (data) => {
   };
 
   return (
-    <div className="flex justify-between  items-center  lg:w-[60%]">
+    <div className="flex justify-between  items-center  laptop:w-[60%]">
       <div className="flex justify-start items-center gap-2">
         <div className="avatar">
           <div className="w-14 rounded-full">

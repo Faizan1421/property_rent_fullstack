@@ -37,13 +37,13 @@ const ListingDetailsSection = (data) => {
   const date = moment(bsonDate).toDate();
   const memberSince = moment(date).format("MMM Do YYYY");
   return (
-    <div className=" top_section w-content flex flex-col self-start justify-center gap-1 lg:gap-8 lg:h-[340px] ">
+    <div className=" top_section w-content flex flex-col self-start justify-center gap-1 laptop:gap-8 laptop:h-[340px] ">
       <h1 className="font-bold text-3xl mb-10">Listed By</h1>
-      <div className="flex gap-4 justify-start items-center lg:flex-col xl:flex-row">
+      <div className="flex gap-4 justify-start items-center flex-col desktop:flex-row">
         <div className="w-20 h-20 ">
           <img
             src={`${listingDetails?.owner?.avatar ? listingDetails?.owner?.avatar : "/avatar.png"}`}
-            className="lg:w-20 lg:h-20 rounded-full object-cover"
+            className="laptop:w-20 laptop:h-20 rounded-full object-cover"
           />
         </div>
         <div className="">
