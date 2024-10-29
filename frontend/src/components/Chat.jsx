@@ -96,7 +96,7 @@ const Chat = () => {
 
   return (
     <>
-      { isPending || isLoading ? (
+      {isPending || isLoading ? (
         <div className="flex justify-center items-center h-screen">
           <Loader className="size-10 animate-spin text-blue-700" />
         </div>
@@ -105,7 +105,9 @@ const Chat = () => {
           {/* <div>{getSingleConversation?.data[0]?.chats[0]?.message}</div> */}
           {getSingleConversation?.data[0]?.chats?.length ? (
             getSingleConversation?.data[0]?.chats
-              ?.slice()?.reverse()?.map((chat, index) => {
+              ?.slice()
+              ?.reverse()
+              ?.map((chat, index) => {
                 // Date format set
                 const bsonDate = chat?.createdAt;
                 const date = moment(bsonDate)?.toDate();
@@ -116,13 +118,21 @@ const Chat = () => {
                   // </div>
                   <div key={index} className="w-full mb-4  laptop:px-32 mt-12">
                     <div
-                      className={`chat ${chat?.sender[0]?._id == authUser?.data?._id ? "chat-end" : "chat-start"}`}
+                      className={`chat ${
+                        chat?.sender[0]?._id == authUser?.data?._id
+                          ? "chat-end"
+                          : "chat-start"
+                      }`}
                     >
                       <div className="chat-image avatar">
                         <div className="w-10 rounded-full">
                           <img
                             alt="Tailwind CSS chat bubble component"
-                            src={`${chat?.sender[0]?.avatar ? chat?.sender[0]?.avatar : "/avatar.png"} `}
+                            src={`${
+                              chat?.sender[0]?.avatar
+                                ? chat?.sender[0]?.avatar
+                                : "/avatar.png"
+                            } `}
                           />
                         </div>
                       </div>
@@ -165,8 +175,12 @@ const Chat = () => {
           required
           disabled={isSendingMsg && "disabled"}
         />
-        <button type="submit" className="btn btn-primary w-14 ml-[-56px] rounded-l-none bg-transparent border-none text-black hover:text-white">
-        <ChevronRight  className="w-10 " />
+        <button
+          type="submit"
+          className="btn btn-primary w-14 ml-[-56px] rounded-l-none bg-transparent border-none text-black 
+        hover:text-white"
+        >
+          <ChevronRight className="w-10 " />
         </button>
       </form>
     </>

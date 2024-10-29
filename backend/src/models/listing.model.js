@@ -33,6 +33,7 @@ const listingSchema = new Schema(
       type: Number,
       required: true,
       min: 0,
+      max: 1000000,
       set: (v) => parseInt(v),
     },
     images: [

@@ -13,6 +13,7 @@ import ProfilePage from "./pages/ProfilePage";
 import ListingDetailsPage from "./pages/ListingDetailsPage";
 import MessengerPage from "./pages/MessengerPage";
 import WishlistPage from "./pages/WishlistPage";
+import CreateListingPage from "./pages/CreateListingPage";
 
 function App() {
   const { data: authUser, isLoading } = useQuery({
@@ -58,10 +59,7 @@ function App() {
           path="/reset-password/:token"
           element={!authUser ? <ResetPasswordPage /> : <Navigate to={"/"} />}
         />
-        <Route
-          path="/profile/:username"
-          element={authUser ? <ProfilePage /> : <Navigate to={"/login"} />}
-        />
+        <Route path="/profile/:username" element={<ProfilePage />} />
         <Route path="/listings/:id" element={<ListingDetailsPage />} />
         <Route
           path="/messenger/:id?"
@@ -70,6 +68,16 @@ function App() {
         <Route
           path="/wishlist"
           element={authUser ? <WishlistPage /> : <Navigate to={"/login"} />}
+        />
+        <Route
+          path="/listings/create-listing"
+          element={
+            authUser && ["seller", "admin"].includes(authUser.data.role) ? (
+              <CreateListingPage />
+            ) : (
+              <Navigate to={"/login"} />
+            )
+          }
         />
       </Routes>
       <Toaster position="bottom-center" reverseOrder={false} />

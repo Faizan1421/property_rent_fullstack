@@ -21,7 +21,7 @@ router
     checkRole("seller", "admin"),
     upload.array("listingImages", 5),
     (req, res, next) => {
-      if (req.files.length < 1) { // minimum 1 image is required
+      if (req?.files?.length < 1) { // minimum 1 image is required
        throw new ApiError(401, "Atleast 1 Image is Required for Creating Listing")
       }
       next();
@@ -29,22 +29,22 @@ router
     createListing
   );
   
-router.route("/:id").delete(verifyJWT, checkRole("seller"), deleteListing);
+router.route("/:id").delete(verifyJWT, checkRole("seller","admin"), deleteListing);
 
-router.route("/:id").patch(verifyJWT, checkRole("seller"), updateListing);
+router.route("/:id").patch(verifyJWT, checkRole("seller","admin"), updateListing);
 
 router
   .route("/:id/images")
   .patch(
     verifyJWT,
-    checkRole("seller"),
+    checkRole("seller","admin"),
     upload.array("listingImages", 1),
     addListingImages
   );
 
 router
   .route("/:id/images/:publicId")
-  .delete(verifyJWT, checkRole("seller"), deleteListingImages);
+  .delete(verifyJWT, checkRole("seller","admin"), deleteListingImages);
 
 router.route("/single/:id").get(getListingById);
 router.route("/c/:category?").get(getAllListings);

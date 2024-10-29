@@ -22,14 +22,15 @@ const Categories = () => {
     queryFn: async () => {
       try {
         const res = await axiosInstance.get("/category");
-        return res.data;
+        return res?.data;
       } catch (err) {
         toast.error(err.response.data.message || "Something went wrong");
       }
     },
+    staleTime : 100000
   });
   isSuccess && queryClient.invalidateQueries({ queryKey: ["listings"] });
-
+console.log(categories,"categ");
   return isLoading ? (
     <div className="flex justify-center items-center h-screen ">
       <Loader className="size-10 animate-spin text-blue-700" />
@@ -47,7 +48,7 @@ const Categories = () => {
       <div className="flex justify-center overflow-hidden flex-wrap gap-4 tablet:gap-4 mb-10 laptop:mb-20">
         <button
           className={`btn btn-outline btn-primary ${
-            selectedCategory.name === "all" && "btn-active "
+            selectedCategory?.name === "all" && "btn-active "
           }`}
           onClick={() => {
             queryClient.setQueryData(["selectedCategory"], () => {

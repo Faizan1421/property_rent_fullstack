@@ -3,17 +3,30 @@ import { useState } from "react";
 import { axiosInstance } from "../../lib/axios";
 import toast from "react-hot-toast";
 import { Loader } from "lucide-react";
-
+import { useLocation, useNavigate } from "react-router-dom";
 const LoginForm = () => {
+  
+ 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const queryClient = useQueryClient();
+  
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const { mutate: loginMutation, isPending } = useMutation({
     mutationFn: (userData) => axiosInstance.post("/users/login", userData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
       toast.success("Logged in successfully");
+      // Method implemented to redirect to previous page from where he redirected to login page
+      const from = location.state?.from;
+      if (from) {
+        navigate(from, { replace: true });
+      } else {
+        navigate("/", { replace: true });
+      }
+      
     },
     onError: (err) => {
       toast.error(err.response.data.message || "Something went wrong");

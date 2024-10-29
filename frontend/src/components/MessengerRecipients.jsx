@@ -122,7 +122,7 @@ const MessengerRecipients = (data) => {
                         <h1
                           className={`text-md ml-5 ${params?.id === conversation?._id && "text-xl font-semiboldS "}`}
                         >
-                          {conversation?.participants[0]?.fullName}
+                          {conversation?.participants[0]?.fullName || "Self"}
                         </h1>
                       </div>
                     </li>

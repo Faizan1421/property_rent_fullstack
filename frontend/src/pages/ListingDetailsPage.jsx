@@ -13,7 +13,7 @@ const ListingDetailsPage = () => {
   const { id } = useParams();
 
   const { data: listingDetails, isLoading } = useQuery({
-    queryKey: ["ListingDetails"],
+    queryKey: ["ListingDetails", id],
     queryFn: async () => {
       try {
         const res = await axiosInstance.get(`/listings/single/${id}`);
@@ -26,6 +26,7 @@ const ListingDetailsPage = () => {
       }
     },
     refetchOnWindowFocus: false, //refetchOnMount: false, for coming back on tab it will not refetch the data
+    staleTime: 600000
   });
 
   !isLoading ? listingDetails.data[0].images : "loading";

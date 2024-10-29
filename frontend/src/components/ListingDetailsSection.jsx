@@ -29,7 +29,8 @@ const ListingDetailsSection = (data) => {
         receiverId: listingDetails?.owner?._id,
       });
     } else {
-      navigate("/messenger");
+      // setting current path as a state in loccation to redirect back to this page
+      navigate("/login", { state: { from: location.pathname } });
     }
   };
 

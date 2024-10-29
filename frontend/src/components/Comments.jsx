@@ -1,12 +1,16 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import moment from "moment";
 import { axiosInstance } from "../lib/axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { EllipsisVertical } from "lucide-react";
 
+
+
 const Comments = (data) => {
+  const navigate = useNavigate()
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdownOpen2, setIsDropdownOpen2] = useState(false);
 
@@ -58,8 +62,12 @@ const Comments = (data) => {
 
   // Add a Comment
   const handleClick = (e) => {
-    e.preventDefault();
-    addComment({ content: createComment });
+    if(authUser){
+      e.preventDefault();
+      addComment({ content: createComment });
+    }else{
+      navigate("/login", { state: { from: location.pathname } });
+    }
   };
 
   // Delete a Comment
@@ -102,7 +110,7 @@ const Comments = (data) => {
               Comments ({allComments?.data?.length})
             </h2>
           </div>
-          {authUser && (
+          
             <form className="mb-6 md:w-[parent]">
               <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 ">
                 <label htmlFor="comment" className="sr-only">
@@ -122,12 +130,15 @@ const Comments = (data) => {
               <button
                 type="submit"
                 className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center btn ptn-primary bg-blue-600 text-white mr-2 hover:bg-white hover:text-blue-600 hover:border-blue-600"
-                onClick={handleClick}
+                onClick={(e)=>{
+                  e.preventDefault()
+                  createComment.length > 0 ? handleClick(e) : toast.error("Please Enter a Comment")
+                }}
               >
                 Post comment
               </button>
             </form>
-          )}
+          
           {/* <CommentsList /> */}
           <>
             {comments?.map((item, index) => (
