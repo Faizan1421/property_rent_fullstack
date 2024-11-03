@@ -87,8 +87,8 @@ const ProfilePage = () => {
         <AvatarUpdate show={showModal} handleClose={handleCloseModal} />
         <div className="text-center laptop:text-left">
           <h1 className="text-3xl font-bold">{userProfile?.fullName}</h1>
-          <p className="text-gray-600">{userProfile?.email}</p>
-          <p className="text-gray-600">{userProfile?.phone}</p>
+          <p className="text-gray-600">{userProfile?.username}</p>
+          <p className="text-gray-600">{userProfile?.role}</p>
         </div>
       </div>
 
