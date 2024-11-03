@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { CircleArrowRight } from "lucide-react";
+import { BadgeCheck, CircleArrowRight } from "lucide-react";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../lib/axios";
@@ -48,8 +48,8 @@ const ListingDetailsSection = (data) => {
           />
         </div>
         <div className="">
-          <h1 className="text-lg font-bold">
-            {listingDetails?.owner?.fullName}
+          <h1 className="text-lg font-bold flex items-center gap-2">
+            {listingDetails?.owner?.fullName}  {listingDetails?.owner?.role == "admin" && <span className="text-yellow-500" title="Admin"><BadgeCheck /></span>} {listingDetails?.owner?.isVerified && listingDetails?.owner?.role != "admin"   && <span className="text-blue-600" title="Verified"><BadgeCheck /></span>}
           </h1>
           <h2 className="text-md font-normal ">Member Since : {memberSince}</h2>
           <h2 className="text-sm font-bold mt-2 flex items-center">

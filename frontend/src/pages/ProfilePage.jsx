@@ -2,7 +2,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { axiosInstance } from "../lib/axios";
 import { useParams, useNavigate } from "react-router-dom";
-import { FilePenLine, Trash2 } from "lucide-react";
+import { BadgeCheck, FilePenLine, Trash2 } from "lucide-react";
 import { useState } from "react";
 import AvatarUpdate from "../components/AvatarUpdate.jsx";
 const ProfilePage = () => {
@@ -34,7 +34,7 @@ const ProfilePage = () => {
   const deleteListingMutation = useMutation({
     mutationFn: async (listingId) => {
       const res = await axiosInstance.delete(`/listings/${listingId}`);
-      return res.data;
+      return res?.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["userProfile", params?.username]);
@@ -62,18 +62,18 @@ const ProfilePage = () => {
 
   return (
     <div className="max-w-full mx-auto p-10 bg-white rounded-lg shadow-lg">
-      <div className="flex flex-col laptop:flex-row items-center justify-center laptop:justify-start mb-20 gap-4">
+      <div className="flex flex-col laptop:flex-row items-center justify-center laptop:justify-start mb-20 gap-8">
         <div
-          className="relative bg-black rounded-full "
+          className="relative rounded-full "
           onClick={() => {
             userProfile?.username == authUser?.data?.username &&
               setShowModal(true);
           }}
         >
           <img
-            src={userProfile?.avatar}
+            src={userProfile?.avatar ||  "/avatar.png"}
             alt="Profile"
-            className="w-32 h-32 rounded-full border-4 border-blue-600  cursor-pointer hover:opacity-60 object-cover"
+            className="w-32 h-32 tablet:w-40 tablet:h-40 rounded-full border-4  cursor-pointer hover:opacity-60 object-cover border-none"
             onMouseOver={() => setShowEditIcon(true)}
             onMouseOut={() => setShowEditIcon(false)}
           />
@@ -85,10 +85,10 @@ const ProfilePage = () => {
             )}
         </div>
         <AvatarUpdate show={showModal} handleClose={handleCloseModal} />
-        <div className="text-center laptop:text-left">
-          <h1 className="text-3xl font-bold">{userProfile?.fullName}</h1>
-          <p className="text-gray-600">{userProfile?.username}</p>
-          <p className="text-gray-600">{userProfile?.role}</p>
+        <div className="text-left">
+          <h1 className="text-3xl font-bold flex items-center  gap-2">{userProfile?.fullName} {userProfile?.role == "admin" && <span className="text-yellow-500" title="Admin"><BadgeCheck /></span>} {userProfile?.isVerified && userProfile?.role != "admin" && <span className="text-blue-600" title="Verified"><BadgeCheck /></span>}</h1>
+          {/* <p className="text-gray-500 font-semibold">{userProfile?.username}</p> */}
+        
         </div>
       </div>
 
@@ -116,8 +116,8 @@ const ProfilePage = () => {
                     {`${listing?.title?.length > 15 ? "..." : ""}`}
                   </h3>
 
-                  <p className="font-bold mt-2">Price: PKR {listing.price}</p>
-                  <p className="text-gray-600">{listing.location.city}</p>
+                  <p className="font-bold mt-2">Price: PKR {listing?.price}</p>
+                  <p className="text-gray-600">{listing?.location?.city}</p>
                 </div>
 
                 {authUser?.data?._id === userProfile?._id && (

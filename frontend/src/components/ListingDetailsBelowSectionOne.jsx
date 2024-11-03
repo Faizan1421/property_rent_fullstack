@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
+import { BadgeCheck } from "lucide-react";
 
 const ListingDetailsBelowSectionOne = (data) => {
   const { data: authUser } = useQuery({ queryKey: ["authUser"] });
@@ -37,7 +38,7 @@ const ListingDetailsBelowSectionOne = (data) => {
     <div className="flex justify-between  items-center  laptop:w-[60%]">
       <div className="flex justify-start items-center gap-2">
         <div className="avatar">
-          <div className="w-14 rounded-full">
+          <div className="w-10 rounded-full">
             <img
               src={
                 listingDetails?.owner?.avatar
@@ -52,18 +53,18 @@ const ListingDetailsBelowSectionOne = (data) => {
           </div>
         </div>
         <h1
-          className="text-md text-black"
+          className="text-sm font-semibold text-black flex items-center gap-2 cursor-pointer"
           onClick={() => {
             navigate(`/profile/${listingDetails?.owner?.username}`);
           }}
         >
-          {listingDetails?.owner?.fullName}
+          {listingDetails?.owner?.fullName}  {listingDetails?.owner?.role == "admin" && <span className="text-yellow-500" title="Admin"><BadgeCheck /></span>} {listingDetails?.owner?.isVerified && listingDetails?.owner?.role != "admin"   && <span className="text-blue-600" title="Verified"><BadgeCheck /></span>}
         </h1>
       </div>
       <div className="">
         {listingDetails?.owner?._id == authUser?.data?._id ? (
           <h1
-            className="btn hover:bg-blue-600 hover:text-white"
+            className="btn hover:bg-blue-600 hover:text-white text-xs"
             onClick={(e) => {
               e.preventDefault();
               navigate(`/listings/update-listing/${listingDetails?._id}`);
@@ -73,7 +74,7 @@ const ListingDetailsBelowSectionOne = (data) => {
           </h1>
         ) : (
           <h1
-            className="btn hover:bg-blue-600 hover:text-white"
+            className="btn hover:bg-blue-600 hover:text-white text-xs"
             onClick={handleClick}
           >
             Message
