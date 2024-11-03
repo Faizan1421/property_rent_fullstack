@@ -61,12 +61,24 @@ const ListingDetailsBelowSectionOne = (data) => {
         </h1>
       </div>
       <div className="">
-        <h1
-          className="btn hover:bg-blue-600 hover:text-white"
-          onClick={handleClick}
-        >
-          Message
-        </h1>
+        {listingDetails?.owner?._id == authUser?.data?._id ? (
+          <h1
+            className="btn hover:bg-blue-600 hover:text-white"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate(`/listings/update-listing/${listingDetails?._id}`);
+            }}
+          >
+            Edit Listing
+          </h1>
+        ) : (
+          <h1
+            className="btn hover:bg-blue-600 hover:text-white"
+            onClick={handleClick}
+          >
+            Message
+          </h1>
+        )}
       </div>
     </div>
   );
