@@ -4,6 +4,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { Listing } from "../models/listing.model.js";
 import { Category } from "../models/category.model.js";
 import {Wishlist} from "../models/wishlist.model.js";
+import { Comment } from "../models/comment.model.js";
 import {
   bulkUploadOnCloudinary,
   deleteBulkOnCloudinary,
@@ -140,6 +141,9 @@ const deleteListing = asyncHandler(async (req, res) => {
     //* 6-delete listing
     const resultDeleted = await Listing.deleteOne({ _id: listingId });
     const deleteFromAllWishlists = await Wishlist.deleteMany({
+      listing : listingId,
+    })
+    const deleteListingComments = await Comment.deleteMany({
       listing : listingId,
     })
     // (resultDeleted)
