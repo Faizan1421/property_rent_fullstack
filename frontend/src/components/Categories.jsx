@@ -30,7 +30,7 @@ const Categories = () => {
     staleTime : 100000
   });
   isSuccess && queryClient.invalidateQueries({ queryKey: ["listings"] });
-console.log(categories,"categ");
+(categories,"categ");
   return isLoading ? (
     <div className="flex justify-center items-center h-screen ">
       <Loader className="size-10 animate-spin text-blue-700" />

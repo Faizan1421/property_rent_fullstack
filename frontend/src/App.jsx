@@ -14,6 +14,7 @@ import ListingDetailsPage from "./pages/ListingDetailsPage";
 import MessengerPage from "./pages/MessengerPage";
 import WishlistPage from "./pages/WishlistPage";
 import CreateListingPage from "./pages/CreateListingPage";
+import UpdateListingPage from "./pages/UpdateListingPage";
 
 function App() {
   const { data: authUser, isLoading } = useQuery({
@@ -35,7 +36,6 @@ function App() {
   if (isLoading)
     return (
       <div className="flex justify-center items-center h-screen">
-        {" "}
         <Loader className="size-10 animate-spin text-blue-700" />{" "}
       </div>
     );
@@ -74,6 +74,16 @@ function App() {
           element={
             authUser && ["seller", "admin"].includes(authUser.data.role) ? (
               <CreateListingPage />
+            ) : (
+              <Navigate to={"/login"} />
+            )
+          }
+        />
+        <Route
+          path="/listings/update-listing/:id"
+          element={
+            authUser && ["seller", "admin"].includes(authUser.data.role) ? (
+              <UpdateListingPage />
             ) : (
               <Navigate to={"/login"} />
             )

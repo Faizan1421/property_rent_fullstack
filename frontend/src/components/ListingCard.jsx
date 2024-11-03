@@ -20,7 +20,7 @@ const ListingCard = (data) => {
       <figure className="h-[50%]">
         <img
           src={
-            item.images?.length > 0
+            item?.images?.length > 0
               ? item?.images?.[0]?.url
               : `/public/assets/images/5.jpg`
           }
@@ -35,7 +35,7 @@ const ListingCard = (data) => {
           {/* <div className="badge badge-secondary">NEW</div> */}
         </h2>
         <p className="text-gray-600">
-          {item.description?.substring(0, 30)}
+          {item?.description?.substring(0, 30)}
           {`${item?.description?.length > 30 ? "..." : ""}`}
         </p>
         <div className="relative w-full ">

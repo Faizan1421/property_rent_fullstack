@@ -28,7 +28,7 @@ const ListingDetailsBelowSectionOne = (data) => {
         receiverId: listingDetails?.owner?._id,
       });
     } else {
-       // setting current path as a state in loccation to redirect back to this page
+      // setting current path as a state in loccation to redirect back to this page
       navigate("/login", { state: { from: location.pathname } });
     }
   };
@@ -45,10 +45,18 @@ const ListingDetailsBelowSectionOne = (data) => {
                   : "/avatar.png"
               }
               alt="Profile Image"
+              onClick={() => {
+                navigate(`/profile/${listingDetails?.owner?.username}`);
+              }}
             />
           </div>
         </div>
-        <h1 className="text-md text-black">
+        <h1
+          className="text-md text-black"
+          onClick={() => {
+            navigate(`/profile/${listingDetails?.owner?.username}`);
+          }}
+        >
           {listingDetails?.owner?.fullName}
         </h1>
       </div>

@@ -64,12 +64,25 @@ const ListingDetailsSection = (data) => {
         </div>
       </div>
       <div className="flex justify-center">
-        <h1
-          className="btn ptn-primary bg-blue-600 text-white mr-2 hover:bg-white hover:text-blue-600 hover:border-blue-600  xl:w-72  "
-          onClick={handleClick}
-        >
-          Message
-        </h1>
+        {listingDetails?.owner?._id === authUser?.data?._id ? (
+           <h1
+           className="btn ptn-primary bg-blue-600 text-white mr-2 hover:bg-white hover:text-blue-600 hover:border-blue-600  xl:w-72  "
+           onClick={(e)=>{
+            e.preventDefault();
+            navigate(`/listings/update-listing/${listingDetails?._id}`)
+           }}
+         >
+           Edit Listing
+         </h1>
+        ): (
+           <h1
+           className="btn ptn-primary bg-blue-600 text-white mr-2 hover:bg-white hover:text-blue-600 hover:border-blue-600  xl:w-72  "
+           onClick={handleClick}
+         >
+           Message
+         </h1>
+        )}
+       
       </div>
     </div>
   );

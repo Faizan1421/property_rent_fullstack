@@ -20,7 +20,7 @@ const ProfilePage = () => {
         const res = await axiosInstance.get(`/users/u/${params?.username}`);
         return res?.data?.data;
       } catch (err) {
-        console.log(err, "err");
+        (err, "err");
         if (err.response && err.response.status === 401) {
           return null;
         }
@@ -51,9 +51,9 @@ const ProfilePage = () => {
     }
   };
 
-  const handleEdit = (listingId) => {
+  const handleUpdate = (listingId) => {
     // Navigate to the edit page or open a modal
-    navigate(`/edit-listing/${listingId}`); // Adjust the path as necessary
+    navigate(`/listings/update-listing/${listingId}`); // Adjust the path as necessary
   };
 
   const handleCloseModal = () => {
@@ -62,11 +62,12 @@ const ProfilePage = () => {
 
   return (
     <div className="max-w-full mx-auto p-10 bg-white rounded-lg shadow-lg">
-      <div className="flex flex-col laptop:flex-row items-center mb-20 gap-4">
+      <div className="flex flex-col laptop:flex-row items-center justify-center laptop:justify-start mb-20 gap-4">
         <div
           className="relative bg-black rounded-full "
           onClick={() => {
-            userProfile?.username == authUser?.data?.username && setShowModal(true);
+            userProfile?.username == authUser?.data?.username &&
+              setShowModal(true);
           }}
         >
           <img
@@ -84,7 +85,7 @@ const ProfilePage = () => {
             )}
         </div>
         <AvatarUpdate show={showModal} handleClose={handleCloseModal} />
-        <div>
+        <div className="text-center laptop:text-left">
           <h1 className="text-3xl font-bold">{userProfile?.fullName}</h1>
           <p className="text-gray-600">{userProfile?.email}</p>
           <p className="text-gray-600">{userProfile?.phone}</p>
@@ -94,31 +95,38 @@ const ProfilePage = () => {
       <div>
         <h2 className="text-2xl font-semibold my-10">Property Listings</h2>
         <div className="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-4 gap-14">
-          {userProfile?.listings.map((listing) => (
+          {userProfile?.listings?.map((listing) => (
             <div
-              key={listing._id}
+              key={listing?._id}
               className=" bg-base-100  rounded-3xl shadow  hover:transform hover:scale-105 transition duration-300 ease-in-out hover:shadow-2xl cursor-pointer"
             >
               <img
-                src={listing.images[0].url}
-                alt={listing.title}
+                src={listing?.images[0]?.url}
+                alt={listing?.title}
+                onClick={() => navigate(`/listings/${listing?._id}`)}
                 className="w-full h-40 object-cover rounded-t-2xl"
               />
               <div className="p-4">
-                <h3 className="text-lg font-semibold mt-2">
-                  {listing?.title?.substring(0, 20)}
-                  {`${listing?.title?.length > 15 ? "..." : ""}`}
-                </h3>
+                <div
+                  className=""
+                  onClick={() => navigate(`/listings/${listing?._id}`)}
+                >
+                  <h3 className="text-lg font-semibold mt-2">
+                    {listing?.title?.substring(0, 20)}
+                    {`${listing?.title?.length > 15 ? "..." : ""}`}
+                  </h3>
 
-                <p className="font-bold mt-2">Price: PKR {listing.price}</p>
-                <p className="text-gray-600">{listing.location.city}</p>
+                  <p className="font-bold mt-2">Price: PKR {listing.price}</p>
+                  <p className="text-gray-600">{listing.location.city}</p>
+                </div>
+
                 {authUser?.data?._id === userProfile?._id && (
                   <div className="mt-4 flex justify-between">
                     <span
                       title="Update Your Listing"
                       onClick={(e) => {
                         e.preventDefault();
-                        handleEdit(listing._id);
+                        handleUpdate(listing._id);
                       }}
                     >
                       <FilePenLine className="text-gray-500 hover:text-blue-600" />

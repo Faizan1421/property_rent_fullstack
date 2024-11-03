@@ -3,6 +3,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import { Listing } from "../models/listing.model.js";
 import { Category } from "../models/category.model.js";
+import {Wishlist} from "../models/wishlist.model.js";
 import {
   bulkUploadOnCloudinary,
   deleteBulkOnCloudinary,
@@ -138,6 +139,9 @@ const deleteListing = asyncHandler(async (req, res) => {
     }
     //* 6-delete listing
     const resultDeleted = await Listing.deleteOne({ _id: listingId });
+    const deleteFromAllWishlists = await Wishlist.deleteMany({
+      listing : listingId,
+    })
     // (resultDeleted)
     if (resultDeleted.deletedCount === 0) {
       throw new ApiError(500, "Error deleting listing");

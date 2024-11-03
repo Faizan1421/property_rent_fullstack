@@ -14,10 +14,11 @@ const ListingDetailsPage = () => {
 
   const { data: listingDetails, isLoading } = useQuery({
     queryKey: ["ListingDetails", id],
+    // dependencies: [id],
     queryFn: async () => {
       try {
         const res = await axiosInstance.get(`/listings/single/${id}`);
-        return res.data;
+        return res?.data;
       } catch (err) {
         if (err.response && err.response.status === 401) {
           return null;
@@ -29,7 +30,7 @@ const ListingDetailsPage = () => {
     staleTime: 600000
   });
 
-  !isLoading ? listingDetails.data[0].images : "loading";
+  !isLoading ? listingDetails?.data[0]?.images : "loading";
 
   return (
     <div className=" py-10 laptop:py-20 px-5 laptop:px-32 ">

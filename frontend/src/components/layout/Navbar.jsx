@@ -65,7 +65,7 @@ const Navbar = () => {
         
       },
       onError: (err) => {
-        console.log("errrrr", err.response.data);
+        ("errrrr", err.response.data);
         toast.error(err.response.data.message || "Something went wrong");
       },
     });
