@@ -15,6 +15,7 @@ import MessengerPage from "./pages/MessengerPage";
 import WishlistPage from "./pages/WishlistPage";
 import CreateListingPage from "./pages/CreateListingPage";
 import UpdateListingPage from "./pages/UpdateListingPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   const { data: authUser, isLoading } = useQuery({
@@ -68,6 +69,10 @@ function App() {
         <Route
           path="/wishlist"
           element={authUser ? <WishlistPage /> : <Navigate to={"/login"} />}
+        />
+        <Route
+          path="/search"
+          element={<SearchPage /> }
         />
         <Route
           path="/listings/create-listing"
