@@ -1,12 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "../../lib/axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { LogOut, Search } from "lucide-react";
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const [searchParams, setSearchParams] = useSearchParams("");
   const [isFocused, setIsFocused] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -85,8 +86,6 @@ const Navbar = () => {
     becomeSeller();
   };
 
-
-
   // const unreadNotificationCount = notifications?.data.filter((notif) => !notif.read).length;
   // const unreadConnectionRequestsCount = connectionRequests?.data?.length;
 
@@ -105,10 +104,22 @@ const Navbar = () => {
             <div className="relative" title="Search Listings">
               <input
                 type="text"
-                className={`${!isFocused && "outline-none border-none" } pl-10 pr-4 py-2 border rounded-lg focus:pl-5 focus:outline-blue-600 w-40 tablet:w-80`}
+                className={`${
+                  !isFocused && "outline-none border-none"
+                } pl-10 pr-4 py-2 border rounded-lg focus:pl-5 focus:outline-blue-600 w-40 tablet:w-80 cursor-pointer`}
                 placeholder={`${isFocused ? "Search Listings" : ""}`}
                 onFocus={() => setIsFocused(true)} // Set focused state to true
-                onBlur={() => setIsFocused(false)} // Set focused state to false
+                onBlur={(e) => {
+                  setIsFocused(false);
+                 e.target.value = "";
+                }} // Set focused state to false
+                onChange={(e) => {
+                  e.preventDefault();
+                  setSearchParams((prev) => {
+                    prev.set("q", e.target.value);
+                    return prev;
+                  });
+                }}
                 onClick={(e) => {
                   e.preventDefault();
                   navigate("/search");
@@ -119,7 +130,6 @@ const Navbar = () => {
                   className="absolute inset-y-0 left-0 pl-3 
               flex items-center 
               pointer-events-none "
-                  
                 >
                   <Search width={20} height={20} />
                 </div>
@@ -141,7 +151,7 @@ const Navbar = () => {
                   </a>
                 )}
                 <button
-                title="Click to Logout Now"
+                  title="Click to Logout Now"
                   className="flex items-center space-x-1 text-sm text-gray-600 hover:text-blue-600"
                   onClick={() => logout()}
                 >

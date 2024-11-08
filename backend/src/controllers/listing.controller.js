@@ -783,7 +783,7 @@ const searchListings = asyncHandler(async (req, res) => {
     // Pagination options from request query params
     const options = {
       page: parseInt(req.query.page) || 1,
-      limit: parseInt(req.query.limit) || 10,
+      limit: parseInt(req.query.limit) || 50,
       sortBy: { createdAt: -1 },
     };
 
@@ -805,7 +805,7 @@ const searchListings = asyncHandler(async (req, res) => {
         new ApiResponse(
           200,
           searchResult,
-          searchResult.length > 0
+          searchResult.docs.length > 0
             ? "Listings Fetched Successfully"
             : "No  Listings Found with This Keyword, Try to find something else"
         )

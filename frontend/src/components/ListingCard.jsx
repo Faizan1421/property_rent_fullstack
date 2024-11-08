@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 const ListingCard = (data) => {
-  data, "data";
+
   const item = data?.item;
 
   const navigate = useNavigate();
@@ -9,7 +9,6 @@ const ListingCard = (data) => {
     navigate(`/listings/${id}`);
   };
 
-  item, "item";
   return (
     <div
       className="card bg-base-100 w-full h-80   tablet:w-80 tablet:h-80 shadow-lg m-5 cursor-pointer hover:transform hover:scale-105 transition duration-300 ease-in-out hover:shadow-2xl"

@@ -10,6 +10,7 @@ app.use(
   cors({
     // must include credentials: true in frontend while using fetch method if you want to set cookie in browser- crediential :true inserver side cors option
     //also must set cors origin if frontend is on deferent server
+    // origin: process.env.CORS_ORIGIN,
     origin: process.env.CORS_ORIGIN,
     credentials: true,
   })
