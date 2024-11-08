@@ -5,6 +5,7 @@ import { LogOut, Search } from "lucide-react";
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import debounce from "lodash.debounce";
 
 const Navbar = () => {
   const [searchParams, setSearchParams] = useSearchParams("");
@@ -104,22 +105,25 @@ const Navbar = () => {
             <div className="relative" title="Search Listings">
               <input
                 type="text"
-                className={`${
+                className={` ${
                   !isFocused && "outline-none border-none"
-                } pl-10 pr-4 py-2 border rounded-lg focus:pl-5 focus:outline-blue-600 w-40 tablet:w-80 cursor-pointer`}
+                } pl-10 pr-4 py-2 border rounded-lg focus:pl-5 focus:outline-blue-600 w-20 ${isFocused && !authUser ? "w-60" : "w-24"} tablet:w-80 cursor-pointer`}
                 placeholder={`${isFocused ? "Search Listings" : ""}`}
                 onFocus={() => setIsFocused(true)} // Set focused state to true
                 onBlur={(e) => {
                   setIsFocused(false);
                  e.target.value = "";
                 }} // Set focused state to false
-                onChange={(e) => {
+
+                // debounce function to prevent search query from being fired too often
+                onChange={debounce((e) => {
                   e.preventDefault();
                   setSearchParams((prev) => {
                     prev.set("q", e.target.value);
+                    prev.set("page", 1);
                     return prev;
                   });
-                }}
+                }, 1000)}
                 onClick={(e) => {
                   e.preventDefault();
                   navigate("/search");
@@ -210,10 +214,11 @@ const Navbar = () => {
               </div>
             ) : (
               <>
-                <Link to="/login" className="btn btn-ghost">
+
+                <Link to="/login" className={`btn btn-ghost ${isFocused ? "hidden" : "relative"} `}>
                   Sign In
                 </Link>
-                <Link to="/signup" className="btn btn-primary">
+                <Link to="/signup" className={`btn btn-primary ${isFocused ? "hidden" : "relative"}`}>
                   Join now
                 </Link>
               </>

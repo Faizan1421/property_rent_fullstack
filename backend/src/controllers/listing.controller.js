@@ -783,7 +783,7 @@ const searchListings = asyncHandler(async (req, res) => {
     // Pagination options from request query params
     const options = {
       page: parseInt(req.query.page) || 1,
-      limit: parseInt(req.query.limit) || 50,
+      limit: parseInt(req.query.limit) || 15,
       sortBy: { createdAt: -1 },
     };
 
