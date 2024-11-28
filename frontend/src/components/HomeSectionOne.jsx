@@ -28,7 +28,7 @@ const HomeSectionOne = () => {
            </div>
           </div>
           <div className="w-full   flex justify-end items-center gap-10 tablet:mb-10">
-            <img src="public/assets/images/illustration.png" alt="image" className="object-cover h-full laptop:h-[400px]"  />
+            <img src="https://res.cloudinary.com/dzxywksdm/image/upload/v1732781875/illustration_xdiqw3.png" alt="image" className="object-cover h-full laptop:h-[400px]"  />
           </div>
         </div>
     );
