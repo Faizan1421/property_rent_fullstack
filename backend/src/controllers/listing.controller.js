@@ -36,6 +36,7 @@ const createListing = asyncHandler(async (req, res) => {
       categories,
       amenities,
       location,
+      isForRent
     } = req.body;
 
     //* 2-Get Images from req.files
@@ -62,6 +63,7 @@ const createListing = asyncHandler(async (req, res) => {
       categories: getCategories || null,
       amenities,
       location,
+      isForRent: isForRent || false,
       owner: user._id,
     });
     //* 4-Upload Images on Cloudinary
@@ -583,9 +585,10 @@ const getAllListings = asyncHandler(async (req, res) => {
     if (categoryName !== "all") {
       categoryMatchStage = { "categories.name": categoryName };
     }
-
+    
+    const { type } = req.query;
     const aggregateListing = Listing.aggregate([
-      { $match: { isPublished: true } }, // Match published items
+      { $match: { isPublished: true,  isForRent: type == "rent" ? true : false, } },
 
       // Lookup categories
       {
@@ -675,6 +678,7 @@ const getAllListings = asyncHandler(async (req, res) => {
           createdAt: 1,
           likesCount: 1,
           isLiked: 1,
+          isForRent: 1,
         },
       },
     ]);
@@ -712,7 +716,7 @@ const getAllListings = asyncHandler(async (req, res) => {
 
 const searchListings = asyncHandler(async (req, res) => {
   try {
-    const { q: query } = req.query;
+    const { q: query, type } = req.query;
 
     query;
     const aggregateListing = Listing.aggregate([
@@ -728,6 +732,7 @@ const searchListings = asyncHandler(async (req, res) => {
       {
         $match: {
           isPublished: true,
+          isForRent: type == "rent" ? true : false,
           $or: [
             { title: { $regex: query, $options: "i" } },
             { description: { $regex: query, $options: "i" } },

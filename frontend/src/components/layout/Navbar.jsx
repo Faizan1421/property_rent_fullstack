@@ -1,14 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "../../lib/axios";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { LogOut, Search } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { LogOut } from "lucide-react";
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import debounce from "lodash.debounce";
+// import debounce from "lodash.debounce";
 
 const Navbar = () => {
-  const [searchParams, setSearchParams] = useSearchParams("");
+  // const [searchParams, setSearchParams] = useSearchParams("");
   const [isFocused, setIsFocused] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -102,7 +102,7 @@ const Navbar = () => {
                 alt="Rent Property"
               />
             </Link>
-            <div className="relative" title="Search Listings">
+            {/* <div className="relative" title="Search Listings">
               <input
                 type="text"
                 className={` ${
@@ -138,7 +138,7 @@ const Navbar = () => {
                   <Search width={20} height={20} />
                 </div>
               )}
-            </div>
+            </div> */}
           </div>
           <div className="flex items-center gap-2 md:gap-6">
             {authUser ? (

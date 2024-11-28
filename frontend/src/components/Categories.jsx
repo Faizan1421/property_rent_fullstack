@@ -29,6 +29,7 @@ const Categories = () => {
     },
     staleTime : 100000
   });
+  
   isSuccess && queryClient.invalidateQueries({ queryKey: ["listings"] });
 (categories,"categ");
   return isLoading ? (

@@ -71,6 +71,10 @@ const listingSchema = new Schema(
       type: Boolean, // we will allow only one time to make it true
       default: false,
     },
+    isForRent: {
+      type: Boolean, 
+      default: false,
+    },
     owner: {
       type: ObjectId,
       ref: "User",

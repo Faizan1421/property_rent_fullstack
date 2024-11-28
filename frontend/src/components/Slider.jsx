@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./sliderStyles.css";
-import { CircleX, ImagePlus, Trash2, X } from "lucide-react";
+import { CircleX, ImagePlus, Trash2 } from "lucide-react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { axiosInstance } from "../lib/axios";

@@ -8,10 +8,11 @@ import InfiniteScroll from "react-infinite-scroller";
 import { useEffect, useState } from "react";
 import { Loader } from "lucide-react";
 import ListingCard from "./ListingCard";
-
+import {  useLocation } from 'react-router-dom';
 const Listings = () => {
   const [categoryCheck, setCategoryCheck] = useState(false);
-
+  const location = useLocation() 
+  console.log( location.pathname);
   const queryClient = useQueryClient();
 
   const { data: category } = useQuery({
@@ -36,11 +37,12 @@ const Listings = () => {
   }
 
   //
+  
   const fetchProjects = async ({ pageParam = 1 }) => {
     const { data } = await axiosInstance.get(
-      `listings/c/${category.name}?page=${pageParam}&limit=12`
+      `listings/c/${category.name}?type=${location.pathname == "/listings-rent" ? "rent" : "buy"}&page=${pageParam}&limit=12`
     );
-    data;
+   
     return data.data;
   };
 
@@ -55,7 +57,7 @@ const Listings = () => {
     isError,
     // status,
   } = useInfiniteQuery({
-    queryKey: ["listings"],
+    queryKey: ["listings",location.pathname],
     queryFn: fetchProjects,
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
@@ -65,14 +67,12 @@ const Listings = () => {
         return undefined;
       }
     },
-    keepPreviousData: true,
     refetchOnWindowFocus: false, //refetchOnMount: false, for coming back on tab it will not refetch the data
   });
 
   //////////////////////////////////////////
 
-  if (isLoading) return <div className="text-center w-full">Loading...</div>;
-  queryData;
+  if (isLoading) return <Loader className="size-5 animate-spin text-blue-700" />;
   if (!queryData && !isLoading)
     return <div className="text-center w-full">No data</div>;
 

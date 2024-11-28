@@ -16,9 +16,11 @@ import WishlistPage from "./pages/WishlistPage";
 import CreateListingPage from "./pages/CreateListingPage";
 import UpdateListingPage from "./pages/UpdateListingPage";
 import SearchPage from "./pages/SearchPage";
+import ListingsRent from "./pages/ListingsRent";
+import ListingsBuy from "./pages/ListingsBuy";
 
 function App() {
-  const { data: authUser, isLoading } = useQuery({
+  const { data: authUser, isLoading, isPending } = useQuery({
     queryKey: ["authUser"],
     queryFn: async () => {
       try {
@@ -34,10 +36,10 @@ function App() {
     refetchOnWindowFocus: false, //refetchOnMount: false, for coming back on tab it will not refetch the data
   });
 
-  if (isLoading)
+  if (isLoading || isPending)
     return (
       <div className="flex justify-center items-center h-screen">
-        <Loader className="size-10 animate-spin text-blue-700" />{" "}
+        <Loader className="size-10 animate-spin text-blue-700" />
       </div>
     );
   return (
@@ -70,10 +72,7 @@ function App() {
           path="/wishlist"
           element={authUser ? <WishlistPage /> : <Navigate to={"/login"} />}
         />
-        <Route
-          path="/search"
-          element={<SearchPage /> }
-        />
+        <Route path="/search" element={<SearchPage />} />
         <Route
           path="/listings/create-listing"
           element={
@@ -94,6 +93,8 @@ function App() {
             )
           }
         />
+         <Route path="/listings-rent" element={<ListingsRent />} />
+         <Route path="/listings-buy" element={<ListingsBuy />} />
       </Routes>
       <Toaster position="bottom-center" reverseOrder={false} />
     </Layout>
