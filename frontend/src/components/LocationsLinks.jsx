@@ -6,7 +6,7 @@ const LocationsLinks = () => {
     navigate(`/search?q=${location}&page=1&pagetype=buy`);
   };
   return (
-    <div className="flex flex-col gap-10 laptop:flex-row px-10 tablet:px-20 mx-auto mb-20 justify-between ">
+    <div className="flex flex-col gap-10 laptop:flex-row px-5 tablet:px-20 mx-auto mb-20 justify-between ">
       <div>
       <h1 className="text-xl tablet:text-2xl font-semibold text-blue-600 mb-5">
         Popular Locations Near Gujar khan

@@ -35,7 +35,7 @@ const FeaturedListings = (featuredType) => {
   if (isLoading) return <Loader className="size-5 animate-spin" />;
 
   return (
-    <div className={`w-full px-10 tablet:px-20 pb-20 ${type === "rent" ? "pt-0" : "pt-20"}`}>
+    <div className={`w-full px-5 tablet:px-20 pb-20 ${type === "rent" ? "pt-0" : "pt-20"}`}>
       <h2 className="text-xl tablet:text-2xl font-bold text-left mb-5 text-blue-600">
         {type === "featured" ? "Featured Properties" : "Trending Rent Properties"}
       </h2>
