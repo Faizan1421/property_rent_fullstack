@@ -7,7 +7,7 @@ const HomeSectionOne = () => {
          
     }
     return (  
-        <div className="flex flex-col tablet:flex-row justify-between items-center w-full px-5 tablet:px-20"
+        <div className="flex flex-col tablet:flex-row justify-between items-center w-full pt-10 px-5 tablet:px-20"
         >
           <div className="laptop:w-[50%]  flex flex-col justify-center items-center tablet:items-start gap-5 tablet:gap-10 mb-10">
             <h1 className="text-2xl laptop:text-5xl font-bold text-center tablet:text-left text-blue-600 ">

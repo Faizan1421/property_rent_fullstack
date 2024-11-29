@@ -35,7 +35,7 @@ const FeaturedListings = (featuredType) => {
   if (isLoading) return <Loader className="size-5 animate-spin" />;
 
   return (
-    <div className={`w-full px-5 tablet:px-20 pb-20 ${type === "rent" ? "pt-0" : "pt-20"}`}>
+    <div className={`w-full px-5 tablet:px-20 pb-20 ${type === "featured" ? "pt-10" : "pt-20"}`}>
       <h2 className="text-xl tablet:text-2xl font-bold text-left mb-5 text-blue-600">
         {type === "featured" ? "Featured Properties" : "Trending Rent Properties"}
       </h2>
@@ -43,13 +43,13 @@ const FeaturedListings = (featuredType) => {
       {/* Custom Navigation Buttons */}
       <div className="relative">
         <button
-          className="custom-prev z-20 ml-5 cursor-pointer absolute w-10 h-10 top-1/2 left-0 -translate-y-1/2 bg-white opacity-50 hover:opacity-100 hover:text-white p-2 rounded-full shadow-md hover:bg-blue-600 transition"
+          className="custom-prev z-20 ml-5 cursor-pointer absolute w-5 h-10 tablet:w-10 tablet:h-10 top-1/2 left-0 -translate-y-1/2 bg-white opacity-50 hover:opacity-100 hover:text-white p-2 rounded-full shadow-md hover:bg-blue-600 transition"
           aria-label="Previous"
         >
           &#10094;
         </button>
         <button
-          className="custom-next z-20 mr-5 cursor-pointer absolute top-1/2 right-0 w-10 h-10 -translate-y-1/2 text-black p-2 bg-white opacity-50 hover:opacity-100 hover:text-white rounded-full shadow-md hover:bg-blue-600 transition"
+          className="custom-next z-20 mr-5 cursor-pointer absolute top-1/2 right-0  w-5 h-10 tablet:w-10 tablet:h-10 -translate-y-1/2 text-black p-2 bg-white opacity-50 hover:opacity-100 hover:text-white rounded-full shadow-md hover:bg-blue-600 transition"
           aria-label="Next"
         >
           &#10095;
@@ -74,7 +74,7 @@ const FeaturedListings = (featuredType) => {
           breakpoints={{
             640: { slidesPerView: 1 },
             768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
+            1024: { slidesPerView: 4 },
           }}
           className="h-full shadow-lg"
           onInit={(swiper) => {

@@ -91,7 +91,7 @@ const Navbar = () => {
   // const unreadConnectionRequestsCount = connectionRequests?.data?.length;
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-white shadow-md sticky top-0 z-[500]">
       <div className="max-w-[screen] mx-auto px-10 laptop:px-20">
         <div className="flex justify-between items-center py-3">
           <div className="flex items-center space-x-6 tablet:space-x-24 ">

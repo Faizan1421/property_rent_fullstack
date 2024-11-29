@@ -2,20 +2,24 @@
 import Faqs from "../components/Faqs";
 import FeaturedListings from "../components/FeaturedListings";
 import Footer from "../components/Footer";
-import HomeSectionOne from "../components/homeSectionOne";
+import HomeSectionOne from "../components/HomeSectionOne";
+import NavbarSub from "../components/layout/NavbarSub";
 import Location from "../components/location";
 import LocationsLinks from "../components/LocationsLinks";
 import SelectType from "../components/selectType";
-import Slide from "../components/Slide";
+import Sponsers from "../components/Sponsers";
+// import Slide from "../components/Slide";
 
 const HomePage = () => {
   return (
     <>
-      <Slide />
+      {/* <Slide /> */}
+      <NavbarSub/>
       <SelectType />
       <HomeSectionOne/>
-      <FeaturedListings type="featured"/>
+      <Sponsers/>
       <FeaturedListings type="rent"/>
+      <FeaturedListings type="featured"/>
       <LocationsLinks/>
       <Faqs/>
       <Location />

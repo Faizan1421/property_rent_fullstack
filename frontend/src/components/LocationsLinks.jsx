@@ -6,12 +6,18 @@ const LocationsLinks = () => {
     navigate(`/search?q=${location}&page=1&pagetype=buy`);
   };
   return (
-    <div className="flex flex-col gap-10 laptop:flex-row px-5 tablet:px-20 mx-auto mb-20 justify-between ">
-      <div>
+    <>
+    <div className="flex flex-col gap-10 laptop:flex-row px-5 tablet:px-20 mx-auto mb-5  mt-10 justify-between ">
       <h1 className="text-xl tablet:text-2xl font-semibold text-blue-600 mb-5">
-        Popular Locations Near Gujar khan
+        Popular Locations of Your Interest
       </h1>
-      <div className="  text-lg cursor-pointer flex flex-col gap-3 w-full tablet:w-1/2">
+    </div>
+    <div className="flex flex-wrap gap-10 laptop:flex-row px-5 tablet:px-20 mx-auto mb-20 justify-between ">
+      <div>
+      <h1 className="text-lg tablet:text-xl font-semibold text-blue-600 mb-5 ">
+        Gujar khan
+      </h1>
+      <div className="  text-lg cursor-pointer flex flex-col gap-3 w-full ">
         <span
           className="underline hover:text-blue-600 text-sm"
           onClick={(e) => {
@@ -70,10 +76,10 @@ const LocationsLinks = () => {
       </div>
       {/* Popular Locations to Buy Near Jehlum */}
       <div className="">
-      <h1 className="text-xl tablet:text-2xl font-semibold text-blue-600 mb-5">
-        Popular Locations Near Jehlum
+      <h1 className="text-lg tablet:text-xl  font-semibold text-blue-600 mb-5">
+       Jehlum
       </h1>
-      <div className="  text-lg cursor-pointer flex flex-col gap-3 w-full tablet:w-1/2 ">
+      <div className="  text-lg cursor-pointer flex flex-col gap-3 w-full  ">
         <span
           className="underline hover:text-blue-600 text-sm"
           onClick={(e) => {
@@ -130,7 +136,70 @@ const LocationsLinks = () => {
         </span>
       </div>
       </div>
+      {/* Popular Locations to Buy Near Rwp */}
+      <div>
+      <h1 className="text-lg tablet:text-xl font-semibold text-blue-600 mb-5">
+        Rawalpindi
+      </h1>
+      <div className="  text-lg cursor-pointer flex flex-col gap-3 w-full ">
+        <span
+          className="underline hover:text-blue-600 text-sm"
+          onClick={(e) => {
+            e.preventDefault();
+            handleLinkClick("Marrer hsassan");
+          }}
+        >
+          Marrer hsassan
+        </span>
+        <span
+          className="underline hover:text-blue-600 text-sm"
+          onClick={(e) => {
+            e.preventDefault();
+            handleLinkClick("Saddar");
+          }}
+        >
+         Saddar
+        </span>
+        <span
+          className="underline hover:text-blue-600 text-sm"
+          onClick={(e) => {
+            e.preventDefault();
+            handleLinkClick("Murree Road");
+          }}
+        >
+          Murree Road
+        </span>
+        <span
+          className="underline hover:text-blue-600 text-sm"
+          onClick={(e) => {
+            e.preventDefault();
+            handleLinkClick("Faizabad");
+          }}
+        >
+          Faizabad
+        </span>
+        <span
+          className="underline hover:text-blue-600 text-sm"
+          onClick={(e) => {
+            e.preventDefault();
+            handleLinkClick("Airport Society");
+          }}
+        >
+          Airport Society
+        </span>
+        <span
+          className="underline hover:text-blue-600 text-sm"
+          onClick={(e) => {
+            e.preventDefault();
+            handleLinkClick("6TH Road");
+          }}
+        >
+          6TH Road
+        </span>
+      </div>
+      </div>
     </div>
+    </>
   );
 };
 
