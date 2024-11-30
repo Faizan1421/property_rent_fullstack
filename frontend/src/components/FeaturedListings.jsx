@@ -32,7 +32,7 @@ const FeaturedListings = (featuredType) => {
     navigate(`/listings/${id}`);
   };
 
-  if (isLoading) return <Loader className="size-5 animate-spin" />;
+  if (isLoading) return <div className="flex justify-center items-center"><Loader className="size-10 animate-spin text-blue-600" /></div> ;
 
   return (
     <div className={`w-full px-5 tablet:px-20 pb-20 ${type === "featured" ? "pt-10" : "pt-20"}`}>

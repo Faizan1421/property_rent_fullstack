@@ -14,10 +14,10 @@ const SelectType = () => {
       }}
     >
       <div className="sticky top-[128px] rounded-none  backdrop-blur-lg px-20 py-10 bg-white  bg-opacity-50  shadow-sm">
-        <div className="flex justify-center items-center gap-4 ">
+        <div className="flex justify-center items-center gap-2 ">
           <span className="bg-white rounded-none ">
-          <h1
-            className={`text-sm tablet:text-xl font-bold cursor-pointer border-none btn laptop:w-32 rounded-none shadow-sm  ${
+          {/* <h1
+            className={`text-xs tablet:text-xl font-bold cursor-pointer border-none w-20 btn laptop:w-32 rounded-none shadow-sm  ${
               !rentSelected
                 ? "btn-primary text-white"
                 : "btn-outline btn-outline-primary text-blue-600 hover:btn-primary hover:text-white"
@@ -28,11 +28,26 @@ const SelectType = () => {
             }}
           >
             Buy
-          </h1>
+          </h1> */}
+          <h1 className={`w-16 text-sm laptop:text-xl laptop:w-28 h-8 transition-all ease-linear duration-700 transform   laptop:h-10 flex justify-center items-center shadow-sm cursor-pointer    ${!rentSelected
+                ? "bg-blue-600 text-white "
+                : " bg-white text-blue-600  "} `}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setRentSelected(false);
+                }}
+                >Buy</h1>
           </span>
           <span className="bg-white rounded-none">
-          <h1
-            className={`text-sm tablet:text-xl font-bold cursor-pointer border-none btn rounded-none laptop:w-32 shadow-sm ${
+          <h1 className={`w-16 text-sm laptop:text-xl laptop:w-28 h-8 transition-all ease-linear duration-700 transform   laptop:h-10 flex justify-center items-center shadow-sm cursor-pointer    ${!rentSelected
+                ? "bg-white text-blue-600"
+                : " bg-blue-600 text-white "} `}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setRentSelected(true);
+                }}>Rent</h1>
+          {/* <h1
+            className={`text-xs tablet:text-xl font-bold cursor-pointer border-none btn rounded-none w-20 laptop:w-32 shadow-sm ${
               rentSelected
                 ? "btn-primary text-white"
                 : "btn-outline btn-outline-primary text-blue-600 hover:btn-primary hover:text-white"
@@ -43,7 +58,7 @@ const SelectType = () => {
             }}
           >
             Rent
-          </h1>
+          </h1> */}
           </span>
          
         </div>

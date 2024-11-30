@@ -62,7 +62,7 @@ const ListingDetailsPage = () => {
         <ListingDetailsBelowSectionThree listingDetails={listingDetails} />
       </div>
       <div className="below_section3 pt-10 laptop:px-16   ">
-      <Map mapData={mapData} />
+      <Map mapData={mapData } />
       </div>
       <div className="below_section3 pt-10 laptop:px-16 ">
         <Comments listingDetails={listingDetails } />

@@ -26,9 +26,7 @@ const Map = (data) => {
   }, [data]);
 
   // Dynamically set the iframe HTML with updated width and height
-  const updatedMapData = mapData
-    .replace(/width="\d+"/, `width="${iframeWidth}"`)
-    .replace(/height="\d+"/, `height="${iframeHeight}"`);
+  const updatedMapData = mapData?.replace(/width="\d+"/, `width="${iframeWidth}"`)?.replace(/height="\d+"/, `height="${iframeHeight}"`);
 
   return (
     <div
