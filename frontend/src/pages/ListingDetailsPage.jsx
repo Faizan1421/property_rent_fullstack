@@ -8,6 +8,7 @@ import ListingDetailsBelowSectionOne from "../components/ListingDetailsBelowSect
 import ListingDetailsBelowSectionTwo from "../components/ListingDetailsBelowSectionTwo";
 import ListingDetailsBelowSectionThree from "../components/ListingDetailsBelowSectionThree";
 import Comments from "../components/Comments";
+import Map from "../components/map";
 
 const ListingDetailsPage = () => {
   const { id } = useParams();
@@ -52,8 +53,11 @@ const ListingDetailsPage = () => {
       <div className="below_section3 pt-10 laptop:px-16   ">
         <ListingDetailsBelowSectionThree listingDetails={listingDetails} />
       </div>
+      <div className="below_section3 pt-10 laptop:px-16   ">
+        <Map longitude="73.298755" latitude="33.260937" />
+      </div>
       <div className="below_section3 pt-10 laptop:px-16 ">
-        <Comments listingDetails={listingDetails} />
+        <Comments listingDetails={listingDetails } />
       </div>
     </div>
   );

@@ -91,9 +91,9 @@ const Navbar = () => {
   // const unreadConnectionRequestsCount = connectionRequests?.data?.length;
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-[500]">
-      <div className="max-w-[screen] mx-auto px-10 laptop:px-20">
-        <div className="flex justify-between items-center py-3">
+    <nav className="bg-white shadow-md sticky top-0 z-[500] h-20  ">
+      <div className="max-w-[screen] mx-auto px-10 laptop:px-20  h-20 ">
+        <div className="flex justify-between items-center py-3  h-20">
           <div className="flex items-center space-x-6 tablet:space-x-24 ">
             <Link to="/">
               <img
@@ -175,7 +175,7 @@ const Navbar = () => {
                   {isOpen && (
                     <ul
                       tabIndex={0}
-                      className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow mt-4"
+                      className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-4 shadow mt-6"
                     >
                       <li
                         className="hover:bg-blue-600 rounded-lg hover:text-white"

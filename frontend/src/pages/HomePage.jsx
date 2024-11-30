@@ -17,9 +17,9 @@ const HomePage = () => {
       <NavbarSub/>
       <SelectType />
       <HomeSectionOne/>
-      <Sponsers/>
       <FeaturedListings type="rent"/>
       <FeaturedListings type="featured"/>
+      <Sponsers/>
       <LocationsLinks/>
       <Faqs/>
       <Location />

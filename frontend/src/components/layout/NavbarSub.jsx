@@ -4,7 +4,7 @@ const NavbarSub = () => {
     const navigate = useNavigate();
   const [activeStatus, setActiveStatus] = useState(1);
   return (
-    <div className="w-full fixed top-[62px] z-[200] backdrop-blur-sm">
+    <div className="w-full fixed top-[80px] z-[200] backdrop-blur-sm">
       <div className="hidden relative w-11/12 mx-auto ">
         <div className="absolute inset-0 m-auto mr-4 z-0 w-6 h-6">
           <svg
@@ -31,7 +31,7 @@ const NavbarSub = () => {
           <option className="text-sm text-gray-600">inactive </option>
           <option className="text-sm text-gray-600">inactive </option>
           <option selected className="text-sm text-gray-600">
-            Active{" "}
+            Active
           </option>
           <option className="text-sm text-gray-600">inactive </option>
           <option className="text-sm text-gray-600">inactive </option>

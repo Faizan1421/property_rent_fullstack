@@ -13,7 +13,7 @@ const SelectType = () => {
         backgroundImage: `url('https://res.cloudinary.com/dzxywksdm/image/upload/v1732791511/sean-pollock-PhYq704ffdA-unsplash_zttnvb.jpg')`, // Replace with your image URL
       }}
     >
-      <div className="sticky top-28 rounded-none  backdrop-blur-lg px-20 py-10 bg-white bg-opacity-80 shadow-sm">
+      <div className="sticky top-[128px] rounded-none  backdrop-blur-lg px-20 py-10 bg-white  bg-opacity-50  shadow-sm">
         <div className="flex justify-center items-center gap-4 ">
           <span className="bg-white rounded-none ">
           <h1
