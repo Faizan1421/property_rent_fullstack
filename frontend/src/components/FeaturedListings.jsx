@@ -43,13 +43,13 @@ const FeaturedListings = (featuredType) => {
       {/* Custom Navigation Buttons */}
       <div className="relative">
         <button
-          className="custom-prev z-20 ml-5 cursor-pointer absolute w-5 h-10 tablet:w-10 tablet:h-10 top-1/2 left-0 -translate-y-1/2 bg-white opacity-50 hover:opacity-100 hover:text-white p-2 rounded-full shadow-md hover:bg-blue-600 transition"
+          className="hidden tablet:block custom-prev z-20 ml-5 cursor-pointer absolute w-5 h-10 tablet:w-10 tablet:h-10 top-1/2 left-0 -translate-y-1/2 bg-white opacity-50 hover:opacity-100 hover:text-white p-2 rounded-full shadow-md hover:bg-blue-600 transition"
           aria-label="Previous"
         >
           &#10094;
         </button>
         <button
-          className="custom-next z-20 mr-5 cursor-pointer absolute top-1/2 right-0  w-5 h-10 tablet:w-10 tablet:h-10 -translate-y-1/2 text-black p-2 bg-white opacity-50 hover:opacity-100 hover:text-white rounded-full shadow-md hover:bg-blue-600 transition"
+          className="hidden tablet:block custom-next z-20 mr-5 cursor-pointer absolute top-1/2 right-0  w-5 h-10 tablet:w-10 tablet:h-10 -translate-y-1/2 text-black p-2 bg-white opacity-50 hover:opacity-100 hover:text-white rounded-full shadow-md hover:bg-blue-600 transition"
           aria-label="Next"
         >
           &#10095;
