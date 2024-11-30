@@ -32,6 +32,14 @@ const ListingDetailsPage = () => {
   });
 
   !isLoading ? listingDetails?.data[0]?.images : "loading";
+  const mapData = `<iframe
+  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13344.191903092966!2d73.2883297!3d33.2652363!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x392005e590052879%3A0x590bf037fb6e3588!2sAl%20Hijrah%20Islamic%20Higher%20Secondary%20School%20(Girls%20Campus)%20Pharwal%20Road%20Gujar%20Khan!5e0!3m2!1sen!2s!4v1732955777993!5m2!1sen!2s"
+  width="600"
+  height="450"
+  style="border:0;"
+  allowfullscreen=""
+  loading="lazy"
+></iframe>`;
 
   return (
     <div className=" py-10 laptop:py-20 px-5 laptop:px-32 ">
@@ -54,7 +62,7 @@ const ListingDetailsPage = () => {
         <ListingDetailsBelowSectionThree listingDetails={listingDetails} />
       </div>
       <div className="below_section3 pt-10 laptop:px-16   ">
-        <Map longitude="73.298755" latitude="33.260937" />
+      <Map mapData={mapData} />
       </div>
       <div className="below_section3 pt-10 laptop:px-16 ">
         <Comments listingDetails={listingDetails } />
