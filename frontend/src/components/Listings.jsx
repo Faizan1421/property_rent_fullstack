@@ -15,7 +15,7 @@ const Listings = () => {
   // const queryClient = useQueryClient();
 
   // Simulating selected category
-  const { data: selectedCategory = { name: "all" }, refetch: refetchCategory } =
+  const { data: selectedCategory = { name: "all" }} =
     useQuery({
       queryKey: ["selectedCategory"],
       initialData: { name: "all" },
@@ -49,7 +49,9 @@ const Listings = () => {
 
   if (isLoading)
     return (
-      <Loader className="size-5 animate-spin text-blue-700" />
+      <div className="flex justify-center items-center h-screen">
+      <Loader className="size-10 animate-spin text-blue-700" />
+      </div>
     );
 
   if (!queryData && !isLoading)

@@ -12,7 +12,7 @@ const ProfilePage = () => {
   const params = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-
+  
   const { data: userProfile } = useQuery({
     queryKey: ["userProfile", params?.username],
     queryFn: async () => {
@@ -59,7 +59,7 @@ const ProfilePage = () => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
+const title = userProfile?.username == authUser?.data?.username ? "Click to Update Profile Image" : "Profile Image";
   return (
     <div className="max-w-full mx-auto p-10 bg-white rounded-lg shadow-lg">
       <div className="flex flex-col laptop:flex-row items-center justify-center laptop:justify-start mb-20 gap-8">
@@ -72,15 +72,16 @@ const ProfilePage = () => {
         >
           <img
             src={userProfile?.avatar ||  "/avatar.png"}
+            title={title}
             alt="Profile"
-            className="w-32 h-32 tablet:w-40 tablet:h-40 rounded-full border-4  cursor-pointer hover:opacity-60 object-cover border-none"
-            onMouseOver={() => setShowEditIcon(true)}
-            onMouseOut={() => setShowEditIcon(false)}
+            className={`w-32 h-32 tablet:w-40 tablet:h-40 rounded-full border-4  cursor-pointer  object-cover border-none ${userProfile?.username == authUser?.data?.username && "hover:opacity-60"}`}
+            // onMouseOver={() => setShowEditIcon(true)}
+            // onMouseOut={() => setShowEditIcon(false)}
           />
-          {showEditIcon &&
+          {
             userProfile?.username == authUser?.data?.username && (
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <FilePenLine className="text-white" size={24} />
+                <FilePenLine className="text-white" size={24}  />
               </div>
             )}
         </div>
