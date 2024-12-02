@@ -589,6 +589,7 @@ const getAllListings = asyncHandler(async (req, res) => {
     const { type } = req.query;
     const aggregateListing = Listing.aggregate([
       { $match: { isPublished: true,  isForRent: type == "rent" ? true : false, } },
+      // { $match: { isPublished: true } },
 
       // Lookup categories
       {

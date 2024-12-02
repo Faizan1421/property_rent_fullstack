@@ -6,15 +6,38 @@ import { rateLimit } from 'express-rate-limit'
 
 const __dirname = path.resolve();
 const app = express();
+// app.use(
+//   cors({
+//     // must include credentials: true in frontend while using fetch method if you want to set cookie in browser- crediential :true inserver side cors option
+//     //also must set cors origin if frontend is on deferent server
+//     // origin: process.env.CORS_ORIGIN,
+//     origin: process.env.CORS_ORIGIN,
+//     credentials: true,
+//   })
+// );
+const allowedOrigins = [
+  "http://localhost:5173", // Add your local development front-end
+  "https://example.com",   // Add your production front-end
+  "https://anotherdomain.com", // Add any other domain that should have access
+  "http://192.168.0.190:5173"
+  
+];
+
 app.use(
   cors({
-    // must include credentials: true in frontend while using fetch method if you want to set cookie in browser- crediential :true inserver side cors option
-    //also must set cors origin if frontend is on deferent server
-    // origin: process.env.CORS_ORIGIN,
-    origin: process.env.CORS_ORIGIN,
-    credentials: true,
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);  // Allow the request
+      } else {
+        callback(new Error("Not allowed by CORS"), false);  // Reject the request
+      }
+    },
+    credentials: true,  // Allow cookies and credentials
   })
 );
+
+
+
 
 app.use(cookieParser());
 

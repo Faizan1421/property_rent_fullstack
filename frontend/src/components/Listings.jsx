@@ -1,48 +1,32 @@
 import {
   useInfiniteQuery,
   useQuery,
-  useQueryClient,
+  
 } from "@tanstack/react-query";
 import { axiosInstance } from "../lib/axios";
 import InfiniteScroll from "react-infinite-scroller";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { Loader } from "lucide-react";
 import ListingCard from "./ListingCard";
-import {  useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+
 const Listings = () => {
-  const [categoryCheck, setCategoryCheck] = useState(false);
-  const location = useLocation() 
-  console.log( location.pathname);
-  const queryClient = useQueryClient();
+  const location = useLocation();
+  // const queryClient = useQueryClient();
 
-  const { data: category } = useQuery({
-    queryKey: ["selectedCategory"],
-    initialData: {
-      name: "all",
-    },
-  });
+  // Simulating selected category
+  const { data: selectedCategory = { name: "all" }, refetch: refetchCategory } =
+    useQuery({
+      queryKey: ["selectedCategory"],
+      initialData: { name: "all" },
+    });
 
-  //   we are checking if category is changed then we will set categoryCheck to true for refetching listing data from server again.
-  useEffect(() => {
-    ("render again");
-
-    if (category) setCategoryCheck(true);
-    return;
-  }, [category]);
-
-  //if categoryCheck is true then we will refetch listing data from server
-  if (categoryCheck) {
-    queryClient.invalidateQueries({ queryKey: ["listings"] });
-    setCategoryCheck(false);
-  }
-
-  //
-  
   const fetchProjects = async ({ pageParam = 1 }) => {
     const { data } = await axiosInstance.get(
-      `listings/c/${category.name}?type=${location.pathname == "/listings-rent" ? "rent" : "buy"}&page=${pageParam}&limit=12`
+      `listings/c/${selectedCategory.name}?type=${
+        location.pathname === "/listings-rent" ? "rent" : "buy"
+      }&page=${pageParam}&limit=12`
     );
-   
     return data.data;
   };
 
@@ -52,54 +36,59 @@ const Listings = () => {
     fetchNextPage,
     hasNextPage,
     isFetching,
-    // isFetchingNextPage,
     isLoading,
     isError,
-    // status,
   } = useInfiniteQuery({
-    queryKey: ["listings",location.pathname],
+    queryKey: ["listings", selectedCategory.name, location.pathname],
     queryFn: fetchProjects,
-    initialPageParam: 1,
-    getNextPageParam: (lastPage) => {
-      if (lastPage?.hasNextPage) {
-        return lastPage?.page + 1;
-      } else {
-        return undefined;
-      }
-    },
-    refetchOnWindowFocus: false, //refetchOnMount: false, for coming back on tab it will not refetch the data
+    getNextPageParam: (lastPage) =>
+      lastPage?.hasNextPage ? lastPage.page + 1 : undefined,
+    refetchOnWindowFocus: false,
   });
 
-  //////////////////////////////////////////
 
-  if (isLoading) return <Loader className="size-5 animate-spin text-blue-700" />;
+  if (isLoading)
+    return (
+      <Loader className="size-5 animate-spin text-blue-700" />
+    );
+
   if (!queryData && !isLoading)
     return <div className="text-center w-full">No data</div>;
 
-  if (isError) return <div className="text-center w-full">{error.message}</div>;
+  if (isError)
+    return <div className="text-center w-full">{error.message}</div>;
 
   return (
-    <div className="mb-48 flex flex-col flex-wrap justify-center items-center  ">
+    <div className="mb-48 flex flex-col flex-wrap justify-center items-center">
+      {/* Example category selector */}
+      <div className="category-selector mb-4">
+       
+      </div>
+
       <InfiniteScroll
         loadMore={() => {
           if (!isFetching) fetchNextPage();
         }}
         hasMore={hasNextPage}
-        
       >
-        {queryData.pages.map((page, index) => (
-          <div key={index} className="flex flex-wrap  ">
-          {page?.docs?.map((item, index) => (
-            <div key={index} className={`w-full ${page?.docs?.length == 1 && "laptop:flex-1"} ${page?.docs?.length >= 3 ? "laptop:w-1/3" : "laptop:w-1/2"} ${page?.docs?.length >= 4 && "desktop:w-1/4" }   p-2 flex justify-center `}>
-              <ListingCard item={item} />
-            </div>
-          ))}
-        </div>
+        {queryData.pages.map((page, pageIndex) => (
+          <div key={pageIndex} className="flex flex-wrap">
+            {page.docs.map((item, itemIndex) => (
+              <div
+                key={itemIndex}
+                className={`w-full ${
+                  page.docs.length === 1 && "laptop:flex-1"
+                } ${page.docs.length >= 3 ? "laptop:w-1/3" : "laptop:w-1/2"} ${
+                  page.docs.length >= 4 && "desktop:w-1/4"
+                } p-2 flex justify-center`}
+              >
+                <ListingCard item={item} />
+              </div>
+            ))}
+          </div>
         ))}
-       
       </InfiniteScroll>
 
-      {/* {isFetching && <div className="text-center w-full">Loading...</div>} */}
       {isFetching && (
         <div className="flex justify-center items-center h-screen">
           <Loader className="size-10 animate-spin text-blue-700" />

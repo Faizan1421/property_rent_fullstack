@@ -12,7 +12,7 @@ const NavbarSub = () => {
   };
 
   return (
-    <div className="w-full fixed top-[80px] z-[200] backdrop-blur-sm">
+    <div className="w-full fixed top-[80px] z-[200] backdrop-blur-lg  bg-opacity-50 shadow-sm">
       <div className="hidden relative w-11/12 mx-auto">
         <div className="absolute inset-0 m-auto mr-4 z-0 w-6 h-6">
           <svg

@@ -7,56 +7,57 @@ import { amenities, cities, states, countries } from "../jsonData.js";
 import { useNavigate, useParams } from "react-router-dom";
 
 const CreateOrUpdateListingPage = (data) => {
-  (data?.data?.data[0]?.title);
   const { id } = useParams();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [isupdateComponent, setIsupdateComponent] = useState(false);
   const [images, setImages] = useState([]);
   const [previewImages, setPreviewImages] = useState([]);
+  const [propertyType, setPropertyType] = useState("buy");
 
-  // Initialize state with data if it exists
   const [formData, setFormData] = useState({
-    title: data?.data?.data[0]?.title || "",
-    description: data?.data?.data[0]?.description || "",
-    highlight: data?.data?.data[0]?.highlight || "",
-    highlightDesc: data?.data?.data[0]?.highlightDesc || "",
-    price: data?.data?.data[0]?.price || "",
-    rooms: data?.data?.data[0]?.rooms || "",
-    selectedAmenities: data?.data?.data[0]?.amenities || [],
-    selectedCategory: data?.data?.data[0]?.categories?.[0]?.name || "5marla",
-    address: data?.datadata?.data?.data[0]?.location?.address || "",
-    city: data?.data?.data[0]?.location?.city || "",
-    state: data?.data?.data[0]?.location?.state || "",
-    zipCode: data?.data?.data[0]?.location?.zipCode || "",
-    country: data?.data?.data[0]?.location?.country || "pakistan",
+    title: "",
+    description: "",
+    highlight: "",
+    highlightDesc: "",
+    price: "",
+    rooms: "",
+    selectedAmenities: [],
+    selectedCategory: "5marla",
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    country: "pakistan",
+    isForRent: false,
   });
 
+  // Populate form data if editing
   useEffect(() => {
     if (data?.data?.data[0]?._id) {
       setIsupdateComponent(true);
+      const listing = data.data.data[0];
       setFormData({
-        title: data?.data?.data[0]?.title || "",
-        description: data?.data?.data[0]?.description || "",
-        highlight: data?.data?.data[0]?.highlight || "",
-        highlightDesc: data?.data?.data[0]?.highlightDesc || "",
-        price: data?.data?.data[0]?.price || "",
-        rooms: data?.data?.data[0]?.rooms || "",
-        selectedAmenities: data?.data?.data[0]?.amenities || [],
-        selectedCategory:
-          data?.data?.data[0]?.categories?.[0]?.name || "5marla",
-        address: data?.data?.data[0]?.location?.address || "",
-        city: data?.data?.data[0]?.location?.city || "",
-        state: data?.data?.data[0]?.location?.state || "",
-        zipCode: data?.data?.data[0]?.location?.zipCode || "",
-        country: data?.data?.data[0]?.location?.country || "pakistan",
+        title: listing.title || "",
+        description: listing.description || "",
+        highlight: listing.highlight || "",
+        highlightDesc: listing.highlightDesc || "",
+        price: listing.price || "",
+        rooms: listing.rooms || "",
+        selectedAmenities: listing.amenities || [],
+        selectedCategory: listing.categories?.[0]?.name || "5marla",
+        address: listing.location?.address || "",
+        city: listing.location?.city || "",
+        state: listing.location?.state || "",
+        zipCode: listing.location?.zipCode || "",
+        country: listing.location?.country || "pakistan",
+        isForRent: listing.isForRent === true,
       });
+      setPropertyType(listing.isForRent === true ? "rent" : "buy");
     }
   }, [data]);
 
-  // Handle form input changes
   const handleInputChange = (e) => {
-    e.preventDefault();
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -80,57 +81,20 @@ const CreateOrUpdateListingPage = (data) => {
     }));
   };
 
-  // Fetching Categories
-  const { data: categories } = useQuery({
-    queryKey: ["categories"],
-    queryFn: async () => {
-      try {
-        const res = await axiosInstance.get("/category");
-        return res?.data;
-      } catch (err) {
-        toast.error(err.response.data.message || "Something went wrong");
-      }
-    },
-    staleTime: 1000000,
-    refetchOnWindowFocus: false,
-  });
-
-  // Create Listing Mutation
-  const { mutate: createListing, isPending } = useMutation({
-    mutationFn: (listingData) =>
-      axiosInstance.post("/listings/create-listing", listingData),
-    onSuccess: (data) => {
-      toast.success("Listing Created successfully");
-      navigate(`/listings/${data?.data?.data?._id}`, { replace: true });
-    },
-    onError: (err) => {
-      toast.error(err.response.data.message || "Something went wrong");
-    },
-  });
-
-  // Update Listing Mutation
-  const { mutate: updateListing, isPending: isUpdating } = useMutation({
-    mutationFn: async (updateData) => {
-      const response = await axiosInstance.patch(`/listings/${id}`, updateData);
-      return response.data;
-    },
-    onSuccess: () => {
-      toast.success("Listing Updated successfully");
-      queryClient.invalidateQueries(["ListingDetails", id]);
-      navigate(`/listings/${id}`);
-    },
-    onError: (error) => {
-      toast.error(error.response?.data?.message || "Update failed");
-    },
-  });
+  const handleTypeChange = (type) => {
+    setPropertyType(type);
+    setFormData((prev) => ({
+      ...prev,
+      isForRent: type === "rent",
+    }));
+  };
 
   const handleImageChange = (e) => {
-    e.preventDefault();
     const files = Array.from(e.target.files);
     const validImages = files.filter((file) => file.type.startsWith("image/"));
 
-    if (validImages?.length + images?.length > 5) {
-      alert("You can upload a maximum of 5 images.");
+    if (validImages.length + images.length > 5) {
+      toast.error("You can upload a maximum of 5 images.");
       return;
     }
 
@@ -142,15 +106,51 @@ const CreateOrUpdateListingPage = (data) => {
   };
 
   const handleRemoveImage = (index) => {
-    const newImages = images.filter((_, i) => i !== index);
-    const newPreviews = previewImages.filter((_, i) => i !== index);
-    setImages(newImages);
-    setPreviewImages(newPreviews);
+    setImages((prev) => prev.filter((_, i) => i !== index));
+    setPreviewImages((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const handleCreateListing = (event) => {
-    event.preventDefault();
+  const { data: categories } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      try {
+        const res = await axiosInstance.get("/category");
+        return res.data;
+      } catch (err) {
+        toast.error(err.response?.data?.message || "Something went wrong");
+      }
+    },
+    staleTime: 1000000,
+    refetchOnWindowFocus: false,
+  });
 
+  const { mutate: createListing, isPending } = useMutation({
+    mutationFn: (listingData) =>
+      axiosInstance.post("/listings/create-listing", listingData),
+    onSuccess: (data) => {
+      toast.success("Listing Created successfully");
+      navigate(`/listings/${data?.data?.data?._id}`, { replace: true });
+    },
+    onError: (err) => {
+      toast.error(err.response?.data?.message || "Something went wrong");
+    },
+  });
+
+  const { mutate: updateListing, isPending: isUpdating } = useMutation({
+    mutationFn: (updateData) =>
+      axiosInstance.patch(`/listings/${id}`, updateData),
+    onSuccess: () => {
+      toast.success("Listing Updated successfully");
+      queryClient.invalidateQueries(["ListingDetails", id]);
+      navigate(`/listings/${id}`);
+    },
+    onError: (error) => {
+      toast.error(error.response?.data?.message || "Update failed");
+    },
+  });
+
+  const handleCreateListing = (e) => {
+    e.preventDefault();
     const formDataToSend = new FormData();
 
     // Append all non-file fields
@@ -161,6 +161,7 @@ const CreateOrUpdateListingPage = (data) => {
     formDataToSend.append("price", formData.price);
     formDataToSend.append("rooms", formData.rooms);
     formDataToSend.append("categories", formData.selectedCategory);
+    formDataToSend.append("isForRent", formData.isForRent);
 
     // Append amenities
     formData.selectedAmenities.forEach((amenity) => {
@@ -184,26 +185,7 @@ const CreateOrUpdateListingPage = (data) => {
 
   const handleUpdateListing = (e) => {
     e.preventDefault();
-
-    const updateData = {
-      title: formData.title,
-      description: formData.description,
-      highlight: formData.highlight,
-      highlightDesc: formData.highlightDesc,
-      price: formData.price,
-      rooms: formData.rooms,
-      categories: formData.selectedCategory,
-      amenities: formData.selectedAmenities,
-      location: {
-        address: formData.address,
-        city: formData.city,
-        state: formData.state,
-        zipCode: formData.zipCode,
-        country: formData.country,
-      },
-    };
-
-    updateListing(updateData);
+    updateListing(formData);
   };
 
 
@@ -310,9 +292,43 @@ const CreateOrUpdateListingPage = (data) => {
             className="w-full p-2 border rounded focus:outline-blue-600"
           />
         </div>
+        {/* Property Type */}
+        <div className="mb-4">
+          <label className="block text-lg laptop:text-2xl font-bold mb-4">
+            Property Type
+          </label>
+          <div className="flex gap-4">
+            <button
+              className={`btn  text-xs tablet:text-sm  ${
+                propertyType === "buy" ? "btn-primary text-white" : "text-black"
+              }`}
+              onClick={(e) => {
+                e.preventDefault();
+                setPropertyType("buy");
+                handleTypeChange("buy");
+              }}
+            >
+              Buy
+            </button>
+            <button
+              className={`btn text-xs tablet:text-sm   ${
+                propertyType === "rent"
+                  ? "btn-primary text-white"
+                  : "text-black"
+              }`}
+              onClick={(e) => {
+                e.preventDefault();
+                setPropertyType("rent");
+                handleTypeChange("rent");
+              }}
+            >
+              Rent
+            </button>
+          </div>
+        </div>
 
         {/* Amenities */}
-        <div className="my-4">
+        <div className="mb-4">
           <h1 className="mb-4 text-lg laptop:text-2xl font-bold">Amenities</h1>
           <div className="btn-group flex gap-4 flex-wrap justify-start">
             {amenities?.map((amenity) => (
@@ -322,7 +338,7 @@ const CreateOrUpdateListingPage = (data) => {
                   formData.selectedAmenities?.includes(amenity.title)
                     ? "btn-primary text-white"
                     : ""
-                } w-[content] text-xs tablet:text-md`}
+                } w-[content] text-xs tablet:text-sm`}
                 onClick={(e) => {
                   e.preventDefault();
                   handleAmenityChange(amenity?.title);

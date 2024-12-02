@@ -215,10 +215,10 @@ const Navbar = () => {
             ) : (
               <>
 
-                <Link to="/login" className={`btn btn-ghost ${isFocused ? "hidden" : "relative"} `}>
+                <Link to="/login" className={`btn btn-ghost ${isFocused ? "hidden" : "relative"}  text-xs laptop:text-sm`}>
                   Sign In
                 </Link>
-                <Link to="/signup" className={`btn btn-primary ${isFocused ? "hidden" : "relative"}`}>
+                <Link to="/signup" className={`btn btn-primary ${isFocused ? "hidden" : "relative"} text-xs laptop:text-sm`}>
                   Join now
                 </Link>
               </>

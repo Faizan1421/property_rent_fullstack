@@ -8,12 +8,12 @@ const SelectType = () => {
 
   return (
     <div
-      className="flex bg-fixed  flex-col justify-center items-center mb-10    bg-cover bg-center bg-no-repeat h-[55vh] tablet:h-[70] laptop:h-[85vh] w-full "
+      className="flex bg-fixed  flex-col justify-center items-center mb-10  bg-cover bg-center bg-no-repeat h-[55vh] tablet:h-[70] laptop:h-[85vh] w-full shadow-sm"
       style={{
         backgroundImage: `url('https://res.cloudinary.com/dzxywksdm/image/upload/v1732791511/sean-pollock-PhYq704ffdA-unsplash_zttnvb.jpg')`, // Replace with your image URL
       }}
     >
-      <div className="sticky top-[128px] rounded-none  backdrop-blur-lg px-20 py-10 bg-white  bg-opacity-50  shadow-sm">
+      <div className="sticky top-[128px] rounded-none  backdrop-blur-sm px-20 py-10  bg-opacity-50  shadow-xl">
         <div className="flex justify-center items-center gap-2 ">
           <span className="bg-white rounded-none ">
           {/* <h1
