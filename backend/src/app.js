@@ -19,7 +19,8 @@ const allowedOrigins = [
   "http://localhost:5173", // Add your local development front-end
   "https://example.com",   // Add your production front-end
   "https://anotherdomain.com", // Add any other domain that should have access
-  "http://192.168.0.190:5173"
+  "http://192.168.0.190:5173",
+  "https://property-rent-fullstack.onrender.com"
   
 ];
 
