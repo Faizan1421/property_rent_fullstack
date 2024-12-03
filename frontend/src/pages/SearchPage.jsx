@@ -22,7 +22,6 @@ const SearchPage = () => {
 
   useEffect(() => {
     queryClient.invalidateQueries({ queryKey: ["listingsByQuery", [q, page]] });
-    console.log("called...");
   }, [q, page, queryClient]);
 
   // Search lisiting query
@@ -39,7 +38,6 @@ const SearchPage = () => {
         const res = await axiosInstance.get(
           `/listings/search?type=${pagetype}&${params.toString()})}`
         );
-        console.log(pagetype.toString());
         return res?.data;
       } catch (err) {
         if (err.response && err.response.status === 401) {

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-
+import { motion } from "framer-motion";
 const HomeSectionOne = () => {
   const navigate = useNavigate();
     const handleClick = (type) => {
@@ -7,7 +7,10 @@ const HomeSectionOne = () => {
          
     }
     return (  
-        <div className="flex flex-col tablet:flex-row justify-between items-center w-full pt-10 px-5 tablet:px-20"
+        <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.0 }} className="flex flex-col tablet:flex-row justify-between items-center w-full pt-10 px-5 laptop:px-20"
         >
           <div className="laptop:w-[50%]  flex flex-col justify-center items-center tablet:items-start gap-5 tablet:gap-10 mb-10">
             <h1 className="text-2xl laptop:text-5xl font-bold text-center tablet:text-left text-blue-600 ">
@@ -27,11 +30,12 @@ const HomeSectionOne = () => {
            }}> Buy a Home</span>
            </div>
           </div>
-          <div className="w-full   flex justify-end items-center gap-10 tablet:mb-10">
+          <div
+          className="w-full  flex justify-end items-center gap-10 tablet:mb-10">
             <img src="https://res.cloudinary.com/dzxywksdm/image/upload/v1732781875/illustration_xdiqw3.png" alt="image" className="object-cover h-full laptop:h-[400px]"  />
           </div>
-        </div>
-    );
+        </motion.div>
+    )
 }
  
 export default HomeSectionOne;

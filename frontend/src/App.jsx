@@ -18,6 +18,9 @@ import UpdateListingPage from "./pages/UpdateListingPage";
 import SearchPage from "./pages/SearchPage";
 import ListingsRent from "./pages/ListingsRent";
 import ListingsBuy from "./pages/ListingsBuy";
+import AboutUsPage from "./pages/AboutUsPage";
+import BlogsPage from "./pages/BlogsPage";
+import CareerPage from "./pages/CareerPage";
 
 function App() {
   const { data: authUser, isLoading, isPending } = useQuery({
@@ -95,6 +98,9 @@ function App() {
         />
          <Route path="/listings-rent" element={<ListingsRent />} />
          <Route path="/listings-buy" element={<ListingsBuy />} />
+         <Route path="/about-us" element={<AboutUsPage />} />
+         <Route path="/blogs" element={<BlogsPage />} />
+         <Route path="/career" element={<CareerPage />} />
       </Routes>
       <Toaster position="bottom-center" reverseOrder={false} />
     </Layout>

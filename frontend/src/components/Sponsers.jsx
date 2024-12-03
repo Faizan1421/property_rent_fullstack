@@ -2,7 +2,7 @@
 
 const Partner3 = () => {
     return (
-        <div className="2xl:mx-auto 2xl:container py-10 laptop:px-20 tablet:px-6 px-4 ">
+        <div className="2xl:mx-auto 2xl:container py-10 px-4 tablet:px-6 laptop:px-20   ">
             <div className="w-full flex flex-col justify-start items-start">
                 <div className="flex flex-col justify-center items-center tablet:items-start space-y-4 ">
                     <h1 className="text-3xl text-center tablet:text-start laptop:text-4xl font-semibold leading-9 tablet:leading-7 laptop:leading-9 text-blue-600">Our Trusted <span className="text-gray-800">Partners</span></h1>
