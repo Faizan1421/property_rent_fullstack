@@ -84,8 +84,8 @@ const SelectType = () => {
             <input
               ref={inputRef}
               type="text"
-              placeholder="Search Property..."
-              className="input input-bordered mt-5 px-8 focus:outline-none focus:border-none focus:shadow-xl w-full tablet:w-[30vw] h-[47px] border-none shadow-lg  rounded-l-md rounded-r-none"
+              placeholder="Search..."
+              className="input input-bordered  mt-5 px-8 focus:outline-none focus:border-none focus:shadow-xl w-[calc(100vw-200px)] tablet:w-[40vw] laptop:w-[30vw] h-[47px] border-none shadow-lg  rounded-l-md rounded-r-none"
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   e.preventDefault();

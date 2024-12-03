@@ -8,7 +8,7 @@ const Location = () => {
         style={{ border: 0 }}
         aria-hidden="false"
         tabIndex="0"
-        className="google-map w-full px-5 tablet:px-20"
+        className="google-map w-full px-5 laptop:px-20"
       />
     
     </div>

@@ -1,6 +1,6 @@
 const Faqs = () => {
   return (
-    <div className="max-w-screen-xl px-5 tablet:px-20 mx-auto mb-20">
+    <div className="max-w-screen-xl px-5 laptop:px-20 mx-auto mb-20">
       <h2 className="mb-5 text-xl sm:text-2xl md:text-3xl font-extrabold leading-9 text-blue-600">
         FAQs
       </h2>

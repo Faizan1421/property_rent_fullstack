@@ -6,7 +6,7 @@ export default function Footer() {
     <div className="mt-12 relative pt-6 ">
         <img className="w-8 laptop:w-auto absolute inset-0 m-auto mr-12 z-10 -mt-4 laptop:-mt-8" src="https://cdn.tuk.dev/assets/templates/weCare/ball-large.png" />
         <img src="https://i.ibb.co/fC8BBxt/footer-bg-wecare.png" className="absolute inset-0 w-full h-full object-cover object-center opacity-100" />
-        <div className="container relative z-10 mx-auto laptop:flex justify-between px-6 laptop:px-0 pt-8 laptop:pt-32 pb-6 laptop:pb-28">
+        <div className="container relative z-10 mx-auto laptop:flex justify-between px-6 tablet:px-0 pt-8 laptop:pt-32 pb-6 laptop:pb-28">
             <div className="laptop:w-1/4 pb-12 laptop:pb-0">
                 <img className="mb-8 w-10 h-10" src="logo.svg" alt="logo" />
                 <p className="text-white text-xl">Four Elements Gujar Khan</p>

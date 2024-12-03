@@ -7,12 +7,12 @@ const LocationsLinks = () => {
   };
   return (
     <>
-    <div className="flex flex-col gap-10 laptop:flex-row px-5 tablet:px-20 mx-auto mb-5  mt-10 justify-between ">
+    <div className="flex flex-col gap-10 laptop:flex-row px-5 laptop:px-20 mx-auto mb-5  mt-10 justify-between ">
       <h1 className="text-xl tablet:text-2xl font-semibold text-blue-600 mb-5">
         Popular Locations of Your Interest
       </h1>
     </div>
-    <div className="flex flex-wrap gap-10 laptop:flex-row px-5 tablet:px-20 mx-auto mb-20 justify-between ">
+    <div className="flex flex-wrap gap-10 laptop:flex-row px-5 laptop:px-20 mx-auto mb-20 justify-between ">
       <div>
       <h1 className="text-lg tablet:text-xl font-semibold text-blue-600 mb-5 ">
         Gujar khan

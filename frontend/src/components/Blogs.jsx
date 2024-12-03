@@ -81,7 +81,7 @@ const Blogs = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl tablet:text-5xl font-bold mb-6"
+            className="text-xl tablet:text-3xl laptop:text-5xl font-bold mb-6"
           >
             Real Estate Insights & Innovations
           </motion.h1>
@@ -89,7 +89,7 @@ const Blogs = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl mb-8"
+            className="text-xs tablet:text-lg laptop:text-xl mb-8"
           >
             Stay ahead of the curve with our expert analysis and industry updates
           </motion.p>
@@ -104,7 +104,7 @@ const Blogs = () => {
               placeholder="Search articles..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-6 py-3 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full px-6 py-3 rounded-md text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300"
               aria-label="Search articles"
             />
             <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-600" aria-label="Search">
@@ -183,8 +183,8 @@ const Blogs = () => {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="text-3xl font-bold mb-4">Stay Updated with Our Newsletter</h2>
-          <p className="text-xl mb-8">Get the latest real estate insights delivered straight to your inbox.</p>
+          <h2 className="text-xl tablet:text-2xl laptop:text-3xl font-bold mb-4">Stay Updated with Our Newsletter</h2>
+          <p className="text-xs tablet:text-lg laptop:text-xl mb-8 px-16 tablet:px-44">Get the latest real estate insights delivered straight to your inbox.</p>
           <form className="flex flex-col tablet:flex-row gap-4 justify-center">
             <input
               type="email"

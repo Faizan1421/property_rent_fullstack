@@ -50,22 +50,22 @@ const teamMembers = [
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-center mb-16">Transforming Real Estate Management</h2>
+            <h2 className="text-2xl px-5 tablet:px-0 tablet:text-3xl font-bold text-center mb-16">Transforming Real Estate Management</h2>
             <div className="grid tablet:grid-cols-3 gap-12">
               <motion.div whileHover={{ y: -10 }} className="text-center ">
                 <Building className="w-16 h-16 text-blue-600 mx-auto mb-6" />
-                <h3 className="text-2xl font-semibold mb-4  ">Smart Property Management</h3>
-                <p className="text-gray-600">Leverage AI-driven insights to optimize your property portfolio and maximize returns.</p>
+                <h3 className=" font-semibold mb-4  px-5 tablet:px-0 text-xl tablet:text-2xl  ">Smart Property Management</h3>
+                <p className="text-gray-600  px-5 tablet:px-0">Leverage AI-driven insights to optimize your property portfolio and maximize returns.</p>
               </motion.div>
               <motion.div whileHover={{ y: -10 }} className="text-center">
                 <Users className="w-16 h-16 text-blue-600 mx-auto mb-6" />
-                <h3 className="text-2xl font-semibold mb-4">Seamless Client Experience</h3>
-                <p className="text-gray-600 ">Delight your clients with intuitive interfaces and personalized property recommendations.</p>
+                <h3 className=" font-semibold mb-4  px-5 tablet:px-0 text-xl tablet:text-2xl  ">Seamless Client Experience</h3>
+                <p className="text-gray-600  px-5 tablet:px-0">Delight your clients with intuitive interfaces and personalized property recommendations.</p>
               </motion.div>
               <motion.div whileHover={{ y: -10 }} className="text-center">
                 <Target className="w-16 h-16 text-blue-600 mx-auto mb-6" />
-                <h3 className="text-2xl font-semibold mb-4 ">Data-Driven Decisions</h3>
-                <p className="text-gray-600 ">Harness the power of advanced analytics to make informed, strategic choices.</p>
+                <h3 className=" font-semibold mb-4  px-5 tablet:px-0 text-xl tablet:text-2xl  ">Data-Driven Decisions</h3>
+                <p className="text-gray-600  px-5 tablet:px-0">Harness the power of advanced analytics to make informed, strategic choices.</p>
               </motion.div>
             </div>
           </motion.div>
