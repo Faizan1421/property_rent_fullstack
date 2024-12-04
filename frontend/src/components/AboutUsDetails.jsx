@@ -10,16 +10,16 @@ const teamMembers = [
   
   const AboutUsDetails = () => {
     return (
-      <div className="">
+      <div className="mt-[50px]">
         {/* Hero Section */}
         <section className="relative  h-[50vh] laptop:h-[100vh]  overflow-hidden bg-gradient-to-t from-blue-600 to-black">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="absolute inset-0 flex items-center justify-center z-10"
+            className="absolute inset-0 flex items-start justify-center z-10"
           >
-            <div className="text-center text-white  ">
+            <div className="text-center text-white  mt-[48px] tablet:mt-[100px] laptop:mt-[200px]">
               <h1 className="text-2xl tablet:text-3xl laptop:text-5xl font-bold mb-4 leading-tight">Redefining Real Estate</h1>
               <p className="text-xl m-8">Innovative SaaS Solutions for the Modern Market</p>
               <motion.a

@@ -44,9 +44,18 @@ const FeaturedListings = (dataType) => {
 
   return (
     <div className={`w-full px-5 laptop:px-20 pb-20 ${type === "featured" ? "pt-10" : "pt-20"}`}>
-      <h2 className="text-xl tablet:text-2xl font-bold text-left mb-5 text-blue-600">
-        {type === "featured" ? "Featured Properties" : "Trending Rent Properties"}
+      <div className="flex justify-between items-center mb-5">
+      <h2 className="text-xl tablet:text-2xl font-bold text-left  text-blue-600">
+        {type === "featured" ? "Buy Properties" : "Rent Properties"}
       </h2>
+      <h2 className="text-sm tablet:text-lg font-bold text-left  text-gray-600 cursor-pointer hover:text-blue-600 hover:underline" onClick={(e)=>{
+        e.preventDefault();
+        navigate(`/${type === "rent" ? "listings-rent" : "listings-buy"}`);
+      }}>
+        View all
+      </h2>
+      </div>
+     
 
       {/* Custom Navigation Buttons */}
       <div className="relative">

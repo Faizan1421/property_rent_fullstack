@@ -21,9 +21,14 @@ import ListingsBuy from "./pages/ListingsBuy";
 import AboutUsPage from "./pages/AboutUsPage";
 import BlogsPage from "./pages/BlogsPage";
 import CareerPage from "./pages/CareerPage";
+import DashboardHomePage from "./pages/DashboardHomePage";
 
 function App() {
-  const { data: authUser, isLoading, isPending } = useQuery({
+  const {
+    data: authUser,
+    isLoading,
+    isPending,
+  } = useQuery({
     queryKey: ["authUser"],
     queryFn: async () => {
       try {
@@ -38,7 +43,6 @@ function App() {
     },
     refetchOnWindowFocus: false, //refetchOnMount: false, for coming back on tab it will not refetch the data
   });
-
   if (isLoading || isPending)
     return (
       <div className="flex justify-center items-center h-screen">
@@ -75,6 +79,7 @@ function App() {
           path="/wishlist"
           element={authUser ? <WishlistPage /> : <Navigate to={"/login"} />}
         />
+
         <Route path="/search" element={<SearchPage />} />
         <Route
           path="/listings/create-listing"
@@ -96,11 +101,23 @@ function App() {
             )
           }
         />
-         <Route path="/listings-rent" element={<ListingsRent />} />
-         <Route path="/listings-buy" element={<ListingsBuy />} />
-         <Route path="/about-us" element={<AboutUsPage />} />
-         <Route path="/blogs" element={<BlogsPage />} />
-         <Route path="/career" element={<CareerPage />} />
+        <Route path="/listings-rent" element={<ListingsRent />} />
+        <Route path="/listings-buy" element={<ListingsBuy />} />
+        <Route path="/about-us" element={<AboutUsPage />} />
+        <Route path="/blogs" element={<BlogsPage />} />
+        <Route path="/career" element={<CareerPage />} />
+
+        {/* only Admin Routes */}
+        <Route
+          path="/admin/dashboard"
+          element={
+            authUser?.data?.role == "admin" ? (
+              <DashboardHomePage />
+            ) : (
+              <Navigate to={"/"} />
+            )
+          }
+        />
       </Routes>
       <Toaster position="bottom-center" reverseOrder={false} />
     </Layout>

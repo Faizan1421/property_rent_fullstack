@@ -25,9 +25,9 @@ const NavbarSub = () => {
   return (
     <div className="w-full fixed top-[80px] z-[200] backdrop-blur-lg  bg-opacity-50 shadow-sm">
 
-      <div className="justify-between flex-wrap tablet:block bg-black bg-opacity-50 shadow-sm">
+      <div className="justify-between flex-wrap tablet:block bg-white bg-opacity-50 shadow-sm">
         <div className="xl:w-full  h-12">
-        <ul className="flex justify-center bg-white gap-6">
+        <ul className="flex justify-center gap-6">
         <li
           onClick={() => navigate("/")}
           className={

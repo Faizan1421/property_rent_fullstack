@@ -15,8 +15,10 @@ const app = express();
 //     credentials: true,
 //   })
 // );
+
 const allowedOrigins = [
   "http://localhost:5173", // Add your local development front-end
+  "http://localhost:3512", // Add your local development front-end
   "http://192.168.0.190:5173",
   "https://property-rent-fullstack.onrender.com"
   

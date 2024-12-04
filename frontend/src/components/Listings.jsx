@@ -61,10 +61,10 @@ const Listings = () => {
     return <div className="text-center w-full">{error.message}</div>;
 
   return (
-    <div className="mb-48 flex flex-col flex-wrap justify-center items-center">
+    <div className="mb-48 mt-5 flex flex-col flex-wrap justify-center items-center">
       {/* Example category selector */}
-      <div className="category-selector mb-4">
-       
+      <div className=" mb-5 tablet:mb-20  w-full justify-center flex items-center " >
+       <h1 className="text-2xl tablet:text-3xl laptop:text-4xl font-bold text-blue-600">{location.pathname === "/listings-rent" ? "Rent Properties" : "Buy Properties"}</h1>
       </div>
 
       <InfiniteScroll
@@ -74,11 +74,12 @@ const Listings = () => {
         hasMore={hasNextPage}
       >
         {queryData.pages.map((page, pageIndex) => (
-          <div key={pageIndex} className="flex flex-wrap">
+          <div key={pageIndex} className="flex flex-wrap ">
             {page.docs.map((item, itemIndex) => (
               <div
                 key={itemIndex}
-                className={`w-full ${
+                className={`w-full tablet:w-1/2  ${
+                 
                   page.docs.length === 1 && "laptop:flex-1"
                 } ${page.docs.length >= 3 ? "laptop:w-1/3" : "laptop:w-1/2"} ${
                   page.docs.length >= 4 && "desktop:w-1/4"

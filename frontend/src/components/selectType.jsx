@@ -7,15 +7,21 @@ const SelectType = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative bg-gradient-to-t from-blue-600 to-black h-[50vh] tablet:h-[50] laptop:h-[100vh] w-full mb-20">
+    <div className="relative bg-gradient-to-br from-black  to-gray-800 h-[50vh] tablet:h-[50] laptop:h-[100vh] w-full mb-20">
       <div
-        className="flex bg-fixed  flex-col justify-center items-center mb-10  bg-cover bg-center bg-no-repeat h-[50vh] tablet:h-[50] laptop:h-[100vh] w-full shadow-sm opacity-60"
+        className="flex bg-fixed  flex-col justify-center items-center mb-10 mt-[48px]  bg-cover bg-center bg-no-repeat h-[50vh] tablet:h-[50] laptop:h-[100vh] w-full shadow-sm opacity-40"
         style={{
           backgroundImage: `url('https://res.cloudinary.com/dzxywksdm/image/upload/v1732791511/sean-pollock-PhYq704ffdA-unsplash_zttnvb.jpg')`, // Replace with your image URL
         }}
       ></div>
 
-      <div className="absolute top-[48px]  w-full  flex justify-center items-center  h-[50vh] tablet:h-[50] laptop:h-[100vh]  ">
+      <div className="absolute top-[48px]  w-full  flex flex-col  items-center   h-[50vh] tablet:h-[50] laptop:h-[100vh]  ">
+        <div className="flex flex-col justify-start items-start  mb-10">
+        <h1 className="mt-0 laptop:mt-10 animate-text bg-gradient-to-r from-gray-500 via-white to-blue-500 bg-clip-text text-transparent text-4xl tablet:text-6xl laptop:text-8xl font-extrabold text-center tracking-wide ">
+               Smart Solutions
+        </h1>
+          <h1 className="mt-0 laptop:mt-10 animate-text bg-gradient-to-r from-blue-500 via-white to-gray-500 bg-clip-text text-transparent text-3xl tablet:text-4xl laptop:text-6xl font-black text-center w-full "> for Real Estate</h1>
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

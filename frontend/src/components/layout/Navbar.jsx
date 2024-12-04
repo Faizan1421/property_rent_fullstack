@@ -208,6 +208,20 @@ const Navbar = () => {
                           Profile
                         </Link>
                       </li>
+                      {
+                        authUser?.data?.role === "admin" && (
+                          <li>
+                          <Link
+                            to={`/admin/dashboard`}
+                            className="hover:bg-blue-600 rounded-lg hover:text-white"
+                            onClick={handleItemClick}
+                          >
+                            Dashboard
+                          </Link>
+                        </li>
+                        )
+                      }
+                     
                     </ul>
                   )}
                 </div>
