@@ -10,9 +10,9 @@ const teamMembers = [
   
   const AboutUsDetails = () => {
     return (
-      <div className="mt-[50px]">
+      <div className="mt-[48px]">
         {/* Hero Section */}
-        <section className="relative  h-[50vh] laptop:h-[100vh]  overflow-hidden bg-gradient-to-t from-blue-600 to-black">
+        <section className="relative  h-[50vh] laptop:h-[100vh]  overflow-hidden bg-gradient-to-br from-black  to-gray-800">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

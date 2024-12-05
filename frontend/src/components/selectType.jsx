@@ -7,7 +7,7 @@ const SelectType = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative bg-gradient-to-br from-black  to-gray-800 h-[50vh] tablet:h-[50] laptop:h-[100vh] w-full mb-20">
+    <div className="relative bg-gradient-to-br from-black  to-gray-800 h-[50vh] tablet:h-[50] laptop:h-[100vh] w-full mb-10 tablet:mb-20">
       <div
         className="flex bg-fixed  flex-col justify-center items-center mb-10 mt-[48px]  bg-cover bg-center bg-no-repeat h-[50vh] tablet:h-[50] laptop:h-[100vh] w-full shadow-sm opacity-40"
         style={{

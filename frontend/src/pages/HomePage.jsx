@@ -1,4 +1,5 @@
 
+import CostCalculatorOnHome from "../components/costCalculatorOnHome";
 import Faqs from "../components/Faqs";
 import FeaturedListings from "../components/FeaturedListings";
 import Footer from "../components/Footer";
@@ -16,6 +17,7 @@ const HomePage = () => {
       {/* <Slide /> */}
       <NavbarSub/>
       <SelectType />
+      <CostCalculatorOnHome/>
       <HomeSectionOne/>
       <FeaturedListings type="rent"/>
       <FeaturedListings type="featured"/>

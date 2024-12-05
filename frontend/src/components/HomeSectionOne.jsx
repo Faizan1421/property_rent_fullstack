@@ -10,7 +10,7 @@ const HomeSectionOne = () => {
         <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.0 }} className="flex flex-col tablet:flex-row justify-between items-center w-full pt-10 px-5 laptop:px-20"
+        transition={{ duration: 1.0 }} className="flex flex-col tablet:flex-row justify-between items-center w-full pt-5 tablet:pt-10 px-5 laptop:px-20"
         >
           <div className="laptop:w-[50%]  flex flex-col justify-center items-center tablet:items-start gap-5 tablet:gap-10 mb-10">
             <h1 className="text-2xl laptop:text-5xl font-bold text-center tablet:text-left text-blue-600 ">

@@ -22,6 +22,7 @@ import AboutUsPage from "./pages/AboutUsPage";
 import BlogsPage from "./pages/BlogsPage";
 import CareerPage from "./pages/CareerPage";
 import DashboardHomePage from "./pages/DashboardHomePage";
+import CostCalculator from "./pages/CostCalculatorPage";
 
 function App() {
   const {
@@ -106,6 +107,7 @@ function App() {
         <Route path="/about-us" element={<AboutUsPage />} />
         <Route path="/blogs" element={<BlogsPage />} />
         <Route path="/career" element={<CareerPage />} />
+        <Route path="/cost-calculator" element={<CostCalculator />} />
 
         {/* only Admin Routes */}
         <Route

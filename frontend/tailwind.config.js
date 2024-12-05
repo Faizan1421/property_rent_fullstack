@@ -8,6 +8,7 @@ export default {
       },
       animation: {
         text: 'text 5s ease infinite',
+        bounceRight: 'bounceRight 1s infinite', // Define your animation
       },
       keyframes: {
         text: {
@@ -19,6 +20,10 @@ export default {
             'background-size': '200% 200%',
             'background-position': 'right center',
           },
+        },
+        bounceRight: {
+          '0%, 100%': { transform: 'translateX(0)' }, // Start and end at original position
+          '50%': { transform: 'translateX(5px)' }, // Move 25px to the right
         },
       },
     },
