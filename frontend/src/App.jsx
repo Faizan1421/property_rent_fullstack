@@ -44,6 +44,8 @@ function App() {
     },
     refetchOnWindowFocus: false, //refetchOnMount: false, for coming back on tab it will not refetch the data
   });
+
+
   if (isLoading || isPending)
     return (
       <div className="flex justify-center items-center h-screen">

@@ -85,7 +85,7 @@ const MessengerRecipients = (data) => {
               className="drawer-overlay  "
             ></label>
 
-            <ul className="menu  min-h-full w-80 p-4 pt-40 laptop:pt-20 bg-blue-600 text-white">
+            <ul className="menu  min-h-full w-80 p-4 pt-40 laptop:pt-20 bg-blue-600 text-white ">
               <div className="flex justify-center items-center mb-10">
                 <img src="/logo.svg" alt="logo" className="h-20 w-20" />
               </div>
@@ -106,7 +106,7 @@ const MessengerRecipients = (data) => {
                         navigate(`/messenger/${conversation?._id}`);
                         document.getElementById("my-drawer-2").click(); // Close the drawer
                       }}
-                      className={`rounded-xl  hover:bg-white hover:text-black  ${params?.id === conversation?._id && "bg-base-100 text-black"} mb-4`}
+                      className={`rounded-xl  ${params?.id === conversation?._id && "bg-base-100 text-black "} mb-4 `}
                     >
                       <div className="avatar">
                         <div className="w-14 rounded-full  ">
@@ -126,7 +126,7 @@ const MessengerRecipients = (data) => {
                         </h1>
                       </div>
                     </li>
-                    <div className="divider mb-0 mt-0  bg-white h-[0.1px] w-[90%]  opacity-20 mx-auto"></div>
+                    {/* <div className="divider mb-0 mt-0  bg-white h-[0.1px] w-[90%]  opacity-20 mx-auto"></div> */}
                   </div>
                 );
               })}

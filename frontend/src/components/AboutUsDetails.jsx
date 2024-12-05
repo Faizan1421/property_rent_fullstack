@@ -19,14 +19,14 @@ const teamMembers = [
             transition={{ duration: 0.8 }}
             className="absolute inset-0 flex items-start justify-center z-10"
           >
-            <div className="text-center text-white  mt-[48px] tablet:mt-[100px] laptop:mt-[200px]">
-              <h1 className="text-2xl tablet:text-3xl laptop:text-5xl font-bold mb-4 leading-tight">Redefining Real Estate</h1>
-              <p className="text-xl m-8">Innovative SaaS Solutions for the Modern Market</p>
+            <div className="text-center text-white  mt-[48px] tablet:mt-[100px] laptop:mt-[100px]">
+              <h1 className="mb-4 leading-tight animate-text bg-gradient-to-r from-gray-500 via-white to-blue-500 bg-clip-text text-transparent  text-4xl tablet:text-6xl laptop:text-8xl font-extrabold text-center tracking-wide ">Redefining <br/> Real  Estate</h1>
+              <p className="text-xl m-8 animate-text bg-gradient-to-r from-blue-500 via-white to-gray-500 bg-clip-text text-transparent">Innovative SaaS Solutions for the Modern Market</p>
               <motion.a
                 href="#learn-more"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center px-6 py-3 bg-white text-blue-600 rounded-full text-lg font-semibold hover:bg-blue-50 transition duration-300"
+                className="inline-flex items-center px-6 py-2 bg-white text-blue-600 rounded-full text-lg font-semibold hover:bg-blue-50 transition duration-300"
               >
                 Learn More
                 <ArrowRight className="ml-2 w-5 h-5" />

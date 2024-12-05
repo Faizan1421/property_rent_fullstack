@@ -16,12 +16,20 @@ const SelectType = () => {
       ></div>
 
       <div className="absolute top-[48px]  w-full  flex flex-col  items-center   h-[50vh] tablet:h-[50] laptop:h-[100vh]  ">
-        <div className="flex flex-col justify-start items-start  mb-10">
-        <h1 className="mt-0 laptop:mt-10 animate-text bg-gradient-to-r from-gray-500 via-white to-blue-500 bg-clip-text text-transparent text-4xl tablet:text-6xl laptop:text-8xl font-extrabold text-center tracking-wide ">
-               Smart Solutions
-        </h1>
-          <h1 className="mt-0 laptop:mt-10 animate-text bg-gradient-to-r from-blue-500 via-white to-gray-500 bg-clip-text text-transparent text-3xl tablet:text-4xl laptop:text-6xl font-black text-center w-full "> for Real Estate</h1>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="flex flex-col justify-start items-start  mb-10"
+        >
+          <h1 className="mt-0 laptop:mt-10 animate-text bg-gradient-to-r from-gray-500 via-white to-blue-500 bg-clip-text text-transparent text-4xl tablet:text-6xl laptop:text-8xl font-extrabold text-center tracking-wide ">
+            Smart Solutions
+          </h1>
+          <h1 className="mt-0 laptop:mt-10 animate-text bg-gradient-to-r from-blue-500 via-white to-gray-500 bg-clip-text text-transparent text-3xl tablet:text-4xl laptop:text-6xl font-black text-center w-full ">
+            {" "}
+            for Real Estate
+          </h1>
+        </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
