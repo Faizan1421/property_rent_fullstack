@@ -79,7 +79,7 @@ export default function CostCalculator() {
               </div>
             </div>
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 tablet:grid-cols-2 laptop:grid-cols-3">
               {[
                 { label: "Bedrooms", value: bedrooms, setValue: setBedrooms, options: [1, 2, 3, 4, 5,6,7,8] },
                 { label: "Bathrooms", value: bathrooms, setValue: setBathrooms, options: [1, 2, 3, 4, 5] },

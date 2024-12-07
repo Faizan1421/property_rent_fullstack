@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
-import { Loader, MapPinHouse, Proportions } from "lucide-react";
+import {  BathIcon, BedIcon, Loader, MapPinHouse, Proportions } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const FeaturedListings = (dataType) => {
@@ -66,7 +66,7 @@ const FeaturedListings = (dataType) => {
           &#10094;
         </button>
         <button
-          className="hidden tablet:block custom-next z-20 mr-5 cursor-pointer absolute top-1/2 right-0 w-5 h-10 tablet:w-10 tablet:h-10 -translate-y-1/2 text-black p-2 bg-white opacity-50 hover:opacity-100 hover:text-white rounded-full shadow-md hover:bg-blue-600 transition"
+          className="hidden tablet:block custom-next z-20 mr-5 cursor-pointer absolute top-1/2 right-0 w-5 h-10 tablet:w-10 tablet:h-10 -translate-y-1/2 text-black p-2 bg-white opacity-50 hover:opacity-100 hover:text-white rounded-full  hover:bg-blue-600 transition"
           aria-label="Next"
         >
           &#10095;
@@ -78,7 +78,7 @@ const FeaturedListings = (dataType) => {
             nextEl: ".custom-next",
             prevEl: ".custom-prev",
           }}
-          pagination={{ clickable: true }}
+          // pagination={{ clickable: true}}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
@@ -91,9 +91,10 @@ const FeaturedListings = (dataType) => {
           breakpoints={{
             640: { slidesPerView: 1 },
             768: { slidesPerView: 2 },
-            1024: { slidesPerView: 4 },
+            1024: { slidesPerView: 3 },
+            1440: { slidesPerView: 4 },
           }}
-          className="h-full shadow-lg"
+          className="h-full py-0 tablet:py-10 "
           onInit={(swiper) => {
             swiper.navigation.init();
             swiper.navigation.update();
@@ -101,18 +102,29 @@ const FeaturedListings = (dataType) => {
         >
           {data?.docs?.map((product) => (
             <SwiperSlide key={product._id} onClick={() => handleClick(product._id)}>
-              <div className="p-4 bg-white rounded-lg cursor-pointer">
+              <div className="p-4 bg-white rounded-lg cursor-pointer shadow-lg">
                 <img
                   src={product.images[0]?.url}
                   alt={product.title || "Property"}
                   className="w-full h-48 object-cover rounded-t-lg"
                 />
-                <div className="flex justify-between items-center mt-4 gap mb-5 mx-5">
+                <div className="flex justify-between items-center mt-4 gap mb-4 mx-5">
                   <h3 className="text-lg font-semibold text-blue-600">
                     {product.title?.substring(0, 15)}
                     {product.title?.length > 15 && "..."}
                   </h3>
                   <p className="text-gray-600 font-semibold">Rs-{product.price}</p>
+                </div>
+                <div className="flex items-center justify-start  mb-2 ml-5 gap-2">
+                  <div className=" flex gap-2 items-center">
+                    <BedIcon className="w-5 h-5 text-blue-600" />
+                    <p className="text-xs text-gray-600">3</p>
+                  </div>
+                  <div className=" flex gap-2 items-center">
+                    <BathIcon className="w-5 h-5 text-blue-600" />
+                    <p className="text-xs text-gray-600">3</p>
+                  </div>
+                  
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="mx-5 flex gap-2 items-center">
@@ -124,6 +136,7 @@ const FeaturedListings = (dataType) => {
                     <p className="text-xs text-gray-600">{product.categories?.name}</p>
                   </div>
                 </div>
+                
               </div>
             </SwiperSlide>
           ))}

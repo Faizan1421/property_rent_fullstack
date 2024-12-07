@@ -2,10 +2,10 @@ import { Building, Users, Target, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const teamMembers = [
-    { name: 'Jane Doe', role: 'CEO & Founder', image: 'https://loremfaces.net/256/id/1.jpg' },
-    { name: 'John Smith', role: 'CTO', image: 'https://loremfaces.net/256/id/2.jpg' },
-    { name: 'Alice Johnson', role: 'Head of Sales', image: 'https://loremfaces.net/256/id/5.jpg' },
-    { name: 'Faizan Tayyab', role: 'Web Developer', image: 'https://loremfaces.net/256/id/3.jpg' },
+    { name: 'Faizan Tayyab', role: 'Co Founder', image: 'https://res.cloudinary.com/dzxywksdm/image/upload/v1733559245/414048569_7141970295891764_5075936731563071177_n_lgiuxi.jpg' },
+    { name: 'Furqan Malik', role: 'Co Founder', image: 'https://res.cloudinary.com/dzxywksdm/image/upload/v1733560932/WhatsApp_Image_2024-12-07_at_13.41.35_2afad96c_jfwozt.jpg' },
+    // { name: 'Alice Johnson', role: 'Head of Sales', image: 'https://loremfaces.net/256/id/5.jpg' },
+    { name: 'Ghyas Malik', role: 'CEO & Founder Four Elements', image: 'https://res.cloudinary.com/dzxywksdm/image/upload/v1733559506/about_d6odba.jpg' },
   ]
   
   const AboutUsDetails = () => {
@@ -83,28 +83,29 @@ const teamMembers = [
             >
               Meet Our Visionary Team
             </motion.h2>
-            <div className="grid tablet:grid-cols-3 laptop:grid-cols-4 gap-16 tablet:gap-4">
+            <div className="grid tablet:grid-cols-2 laptop:grid-cols-3 gap-16 tablet:gap-4">
               {teamMembers.map((member, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                  className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300"
-                >
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    width={400}
-                    height={400}
-                    className="w-full h-ful object-cover l"
-                  />
-                  <div className="p-6">
-                    <h3 className="text-2xl font-semibold mb-2">{member.name}</h3>
-                    <p className="text-blue-600 font-medium">{member.role}</p>
-                  </div>
-                </motion.div>
+              <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-lg shadow-lg overflow-hidden  "
+            >
+              <div className="w-96 h-72 relative overflow-hidden hover:scale-110 transition duration-300 ">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-96 h-72 object-cover "
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold mb-2">{member.name}</h3>
+                <p className="text-blue-600 font-medium">{member.role}</p>
+              </div>
+            </motion.div>
+            
               ))}
             </div>
           </div>
