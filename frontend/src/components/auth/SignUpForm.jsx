@@ -65,7 +65,7 @@ const SignUpForm = () => {
       />
       <input
         type="phone"
-        placeholder="Phone Ex: 3125649693"
+        placeholder="Phone Ex: 03125649693"
         value={phoneNumber}
         onChange={(e) => setPhoneNumber(e.target.value)}
         className="input input-bordered w-full"

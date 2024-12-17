@@ -304,10 +304,10 @@ const addListingImages = asyncHandler(async (req, res) => {
       localImagesPath.push(path);
     }
     //add more image to listing less than 6
-    if (listing?.images?.length >= 5) {
+    if (listing?.images?.length >= 15) {
       //if images are more than 5 we will delete the image stored in temp folder
       fs.unlinkSync(localImagesPath[0]);
-      throw new ApiError(400, "You cannot add more than 5 images");
+      throw new ApiError(400, "You cannot add more than 15 images");
     }
     //!IMP create different bulk image uploader method in cloudinary utility
     const imageUploaded = await bulkUploadOnCloudinary({

@@ -54,10 +54,10 @@ const userSchema = new Schema(
       required: [true, "Phone number is required"],
       validate: {
         validator: function (v) {
-          return /^\+92\d{10}$/.test(v); // Pakistani phone number format validation
+          return /^\+92\d{11}$/.test(v); // Pakistani phone number format validation
         },
         message: (props) =>
-          `${props.value} is not a valid Pakistani phone number!`,
+          `This is not a valid Pakistani phone number!`,
       },
     },
     refreshToken: {

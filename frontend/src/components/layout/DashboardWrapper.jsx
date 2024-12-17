@@ -1,13 +1,19 @@
-import { useEffect, useState } from "react";
-import PropTypes from "prop-types"; // Import PropTypes
+import  { useEffect, useState, useCallback, memo } from "react";
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
-const DashboardWrapper = ({children}) => {
+const DashboardWrapper = ({ children }) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const navigate = useNavigate();
 
-  const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
-  const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
+  // Memoized toggle functions
+  const toggleSidebar = useCallback(() => setSidebarOpen((prev) => !prev), []);
+  const toggleDropdown = useCallback(
+    () => setDropdownOpen((prev) => !prev),
+    []
+  );
 
   // Check screen size
   useEffect(() => {
@@ -18,18 +24,17 @@ const DashboardWrapper = ({children}) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  
+
   return (
-    <>
+    <div className="">
       <button
         data-drawer-target="sidebar-multi-level-sidebar"
         data-drawer-toggle="sidebar-multi-level-sidebar"
         aria-controls="sidebar-multi-level-sidebar"
         type="button"
-        className="z-[1000]  relative inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+        className="z-[1000] fixed inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
         onClick={toggleSidebar}
       >
-        {/* <span className="sr-only ">Open sidebar</span> */}
         <svg
           className="w-6 h-6"
           aria-hidden="true"
@@ -47,14 +52,34 @@ const DashboardWrapper = ({children}) => {
 
       <aside
         id="sidebar-multi-level-sidebar"
-        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform  mt-20 ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full "
+        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform mt-20 ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } sm:translate-x-0`}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 pt-20 overflow-y-auto bg-gray-50  ">
+        <div className="h-full px-3 py-4 pt-20 overflow-y-auto bg-gray-50">
           <ul className="space-y-2 font-medium">
-            <li>
+            <li onClick={() => navigate("/admin/dashboard")}>
+              <a
+                href="#"
+                className="flex items-center p-2 text-gray-900 hover:text-white rounded-lg hover:bg-blue-600 group"
+                onClick={() => navigate("/admin/dashboard")}
+              >
+                <svg
+                  className="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 22 21"
+                >
+                  <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
+                  <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
+                </svg>
+                <span className="ms-3" >Dashboard</span>
+              </a>
+            </li>
+            {/* Add more navigation items here */}
+            <li  onClick={() => navigate("/admin/dashboard/users")}>
               <a
                 href="#"
                 className="flex items-center p-2 text-gray-900 hover:text-white rounded-lg  hover:bg-blue-600  group"
@@ -69,9 +94,15 @@ const DashboardWrapper = ({children}) => {
                   <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                   <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                 </svg>
-                <span className="ms-3">Dashboard</span>
+                <span
+                  className="ms-3"
+                 
+                >
+                  Users
+                </span>
               </a>
             </li>
+           
             <li>
               <button
                 type="button"
@@ -137,17 +168,17 @@ const DashboardWrapper = ({children}) => {
           isSidebarOpen && isDesktop ? "ml-64" : "ml-0"
         } transition-all duration-300 ease-in-out`}
       >
-       {children}
+        {children}
       </div>
-    </>
+    </div>
   );
 };
 
+// Add memoization to prevent re-rendering
+const MemoizedDashboardWrapper = memo(DashboardWrapper);
 
-// Add prop types validation
 DashboardWrapper.propTypes = {
-    children: PropTypes.node, // Validates that children can be any renderable React node
-  };
-  
+  children: PropTypes.node, // Validates that children can be any renderable React node
+};
 
-export default DashboardWrapper;
+export default MemoizedDashboardWrapper;

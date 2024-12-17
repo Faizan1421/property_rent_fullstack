@@ -866,7 +866,7 @@ const getAllSellers = asyncHandler(async (req, res) => {
           _id: 1,
           username: 1,
           email: 1,
-          fullame: 1,
+          fullName: 1,
           gender: 1,
           role: 1,
           isVerified: 1,

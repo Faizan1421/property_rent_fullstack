@@ -93,7 +93,7 @@ const CreateOrUpdateListingPage = (data) => {
     const files = Array.from(e.target.files);
     const validImages = files.filter((file) => file.type.startsWith("image/"));
 
-    if (validImages.length + images.length > 5) {
+    if (validImages.length + images.length > 15) {
       toast.error("You can upload a maximum of 5 images.");
       return;
     }
@@ -479,7 +479,7 @@ const CreateOrUpdateListingPage = (data) => {
         {!isupdateComponent && (
           <div className="mb-4">
             <label className="block text-lg laptop:text-2xl font-bold mb-4">
-              Upload Images (max 5)
+              Upload Images (max 15)
             </label>
 
             <input

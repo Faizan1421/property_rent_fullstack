@@ -5,7 +5,7 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen flex flex-col justify-center py-12 tablet:px-6 laptop:px-8">
       <div className="tablet:mx-auto tablet:w-full tablet:max-w-md">
-        <img className="mx-auto h-40 w-auto" src="/logo.svg" alt="LinkedIn" />
+        <img className="mx-auto h-40 w-auto" src="/logo.svg" alt="Property Rent" />
         <h2 className=" text-center text-3xl font-extrabold text-gray-900">
           Sign in to your account
         </h2>

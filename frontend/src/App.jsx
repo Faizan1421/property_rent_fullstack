@@ -23,6 +23,9 @@ import BlogsPage from "./pages/BlogsPage";
 import CareerPage from "./pages/CareerPage";
 import DashboardHomePage from "./pages/DashboardHomePage";
 import CostCalculator from "./pages/CostCalculatorPage";
+import DashboardUsersPage from "./pages/DashboardUsersPage";
+
+// import MemoizedDashboardWrapper from "./components/layout/DashboardWrapper";
 
 function App() {
   const {
@@ -44,7 +47,6 @@ function App() {
     },
     refetchOnWindowFocus: false, //refetchOnMount: false, for coming back on tab it will not refetch the data
   });
-
 
   if (isLoading || isPending)
     return (
@@ -111,7 +113,9 @@ function App() {
         <Route path="/career" element={<CareerPage />} />
         <Route path="/cost-calculator" element={<CostCalculator />} />
 
+   
         {/* only Admin Routes */}
+      
         <Route
           path="/admin/dashboard"
           element={
@@ -122,7 +126,18 @@ function App() {
             )
           }
         />
-      </Routes>
+        <Route
+          path="/admin/dashboard/users"
+          element={
+            authUser?.data?.role == "admin" ? (
+              <DashboardUsersPage />
+            ) : (
+              <Navigate to={"/"} />
+            )
+          }
+        />
+     
+           </Routes>
       <Toaster position="bottom-center" reverseOrder={false} />
     </Layout>
   );

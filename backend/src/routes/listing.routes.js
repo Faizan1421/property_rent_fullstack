@@ -19,7 +19,7 @@ router
   .post(
     verifyJWT,
     checkRole("seller", "admin"),
-    upload.array("listingImages", 5),
+    upload.array("listingImages", 15),
     (req, res, next) => {
       if (req?.files?.length < 1) { // minimum 1 image is required
        throw new ApiError(401, "Atleast 1 Image is Required for Creating Listing")

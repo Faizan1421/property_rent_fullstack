@@ -38,7 +38,7 @@ const Slider = (data) => {
     },
   });
   // Update Listing Image Mutation
-  const { mutate: updateImageToBackend } = useMutation({
+  const { mutate: updateImageToBackend, isLoading: isUpdatingImage } = useMutation({
     mutationFn: (data) =>
       axiosInstance.patch(`/listings/${listingId}/images/`, data),
     onSuccess: () => {
@@ -71,8 +71,11 @@ const Slider = (data) => {
 
   const updateImage = () => {
     const formData = new FormData();
-    formData.append("listingImages", selectedimages[0]);
-    updateImageToBackend(formData);
+    if (selectedimages.length > 0) {
+      formData.append("listingImages", selectedimages[0]);
+      updateImageToBackend(formData);
+      document.getElementById("my_modal_3").close();
+    }
 
   }
 
@@ -108,8 +111,10 @@ const Slider = (data) => {
                 onClick={(e) => {
                   e.preventDefault()
                   updateImage()
-                  document.getElementById("my_modal_3").close();
+                  // document.getElementById("my_modal_3").close();
+                  
                 }}
+                disabled={isUpdatingImage}
               >
                 Upload
               </button>
@@ -219,7 +224,7 @@ const Slider = (data) => {
         ))}
         {authUser &&
           authUser?.data?._id == data?.listingDetails?.data[0]?.owner?._id &&
-          images.length < 5 && (
+          images.length < 15 && (
             <SwiperSlide
               className="text-center text-[18px] items-center"
               onClick={(e) => {

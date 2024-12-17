@@ -42,4 +42,4 @@ router
   .post(verifyJWT, checkRole("user"), becomeSeller);
 router.route("/u/:username").get(getUserProfile);
 export default router;
-router.route("/sellers").get(getAllSellers);
+router.route("/sellers").get(verifyJWT, checkRole("admin"),getAllSellers);
